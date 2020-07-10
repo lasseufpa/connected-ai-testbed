@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 # Quickstart Guide
 
 This document is a quickstart and a getting started guide in one, intended for your first run-through of UFPA Live Network 4G/5G.
@@ -110,6 +110,5 @@ Access logs of each pod through master node:
 ```shell
 kubectl logs <pod name>
 ```
-=======
-Connected AI testbed description
->>>>>>> 18f5e04ce923a766c237be89e30589690c095ffd
+
+
