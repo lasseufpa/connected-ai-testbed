@@ -1,0 +1,51 @@
+[submodule "free5gc-docker-kube"]
+	path = free5gc-docker-kube
+	url = https://gitlab.lasse.ufpa.br/2020-ai-testbed/ai-testbed/free5gc-docker-kube.git
+[submodule "oai-ran-docker"]
+	path = oai-ran-docker
+	url = https://gitlab.lasse.ufpa.br/2020-ai-testbed/ai-testbed/oai-ran-docker.git
+[submodule "drone-scenarios/amf-edge-scenario"]
+	path = drone-scenarios/amf-edge-scenario
+	url = https://gitlab.lasse.ufpa.br/2020-ai-testbed/ai-testbed/use-cases/drone-slices/amf-edge-scenario.git
+[submodule "drone-scenarios/amf-upf-edge-scenario"]
+	path = drone-scenarios/amf-upf-edge-scenario
+	url = https://gitlab.lasse.ufpa.br/2020-ai-testbed/ai-testbed/use-cases/drone-slices/amf-upf-edge-scenario.git
+[submodule "drone-scenarios/cran-scenario"]
+	path = drone-scenarios/cran-scenario
+	url = https://gitlab.lasse.ufpa.br/2020-ai-testbed/ai-testbed/use-cases/drone-slices/cran-scenario.git
+[submodule "drone-scenarios/monolith-scenario"]
+	path = drone-scenarios/monolith-scenario
+	url = https://gitlab.lasse.ufpa.br/2020-ai-testbed/ai-testbed/use-cases/drone-slices/monolith-scenario.git
+[submodule "drone-scenarios/all-in-one"]
+	path = drone-scenarios/all-in-one
+	url = https://gitlab.lasse.ufpa.br/2020-ai-testbed/ai-testbed/use-cases/drone-slices/all-in-one.git
+[submodule "ran-slice-scenarios/cran-scenario"]
+	path = ran-slice-scenarios/cran-scenario
+	url = https://gitlab.lasse.ufpa.br/2020-ai-testbed/ai-testbed/use-cases/vnf-placement/cran-scenario.git
+[submodule "ran-slice-scenarios/ran-slicing-simple-scenario"]
+	path = ran-slice-scenarios/ran-slicing-simple-scenario
+	url = https://gitlab.lasse.ufpa.br/2020-ai-testbed/ai-testbed/use-cases/flexran-ran-slice/ran-slicing-simple-scenario.git
+[submodule "cran-scenario"]
+	path = cran-scenario
+	url = https://gitlab.lasse.ufpa.br/2020-ai-testbed/ai-testbed/use-cases/vnf-placement/cran-scenario.git
+[submodule "monolith-scenario"]
+	path = monolith-scenario
+	url = https://gitlab.lasse.ufpa.br/2020-ai-testbed/ai-testbed/use-cases/vnf-placement/monolith-scenario.git
+[submodule "all-in-one"]
+	path = all-in-one
+	url = https://gitlab.lasse.ufpa.br/2020-ai-testbed/ai-testbed/use-cases/vnf-placement/all-in-one.git
+[submodule "vnf-placement-scenarios/monolith-scenario"]
+	path = vnf-placement-scenarios/monolith-scenario
+	url = https://gitlab.lasse.ufpa.br/2020-ai-testbed/ai-testbed/use-cases/vnf-placement/monolith-scenario.git
+[submodule "vnf-placement-scenarios/cran-scenario"]
+	path = vnf-placement-scenarios/cran-scenario
+	url = https://gitlab.lasse.ufpa.br/2020-ai-testbed/ai-testbed/use-cases/vnf-placement/cran-scenario.git
+[submodule "vnf-placement-scenarios/all-in-one"]
+	path = vnf-placement-scenarios/all-in-one
+	url = https://gitlab.lasse.ufpa.br/2020-ai-testbed/ai-testbed/use-cases/vnf-placement/all-in-one.git
+[submodule "vnf-placement-scenarios/amf-edge-scenario"]
+	path = vnf-placement-scenarios/amf-edge-scenario
+	url = https://gitlab.lasse.ufpa.br/2020-ai-testbed/ai-testbed/use-cases/vnf-placement/amf-edge-scenario.git
+[submodule "vnf-placement-scenarios/amf-upf-edge-scenario"]
+	path = vnf-placement-scenarios/amf-upf-edge-scenario
+	url = https://gitlab.lasse.ufpa.br/2020-ai-testbed/ai-testbed/use-cases/vnf-placement/amf-upf-edge-scenario.git
