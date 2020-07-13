@@ -1,15 +1,15 @@
 
 # Quickstart Guide
 
-This document is a quickstart and a getting started guide in one, intended for your first run-through of UFPA Live Network 4G/5G (The Connected AI testbed).
+This document is a quickstart and a getting started guide in one, intended for your first run-through of Connected AI testbed.
 
 We'll first install [Docker](https://www.docker.com/), [Docker-Compose](https://docs.docker.com/compose/), [Kubernetes](https://kubernetes.io/), [Calico](https://www.projectcalico.org/), and [Helm](https://helm.sh/), then we'll setup some configurations to run the available scenarios.
 
 ## Overview
 
-UFPA Live Network 4G/5G (The Connected AI testbed) allows building flexible and realistic scenarios where different network topologies for 4G/5G and quickly deploy them. 
+Connected AI testbed allows building flexible and realistic scenarios where different network topologies for 4G/5G and quickly deploy them. 
 
-![UFPA_Live_5G_Network__2_](https://gitlab.lasse.ufpa.br/2020-ai-testbed/ai-testbed/project-agenda/uploads/b63d4f758f295f2a81d009275999fff2/UFPA_Live_5G_Network__2_.png)
+![UFPA_Live_5G_Network__2_](https://gitlab.lasse.ufpa.br/2020-ai-testbed/ai-testbed/project-agenda/uploads/300adcf0c0e076aa1499e60b5e477df4/UFPA_Live_5G_Network_.png)
 
 
 ## Available scenarios
