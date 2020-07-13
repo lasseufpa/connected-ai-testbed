@@ -1,19 +1,30 @@
 
 # Quickstart Guide
 
-This document is a quickstart and a getting started guide in one, intended for your first run-through of UFPA Live Network 4G/5G.
+This document is a quickstart and a getting started guide in one, intended for your first run-through of UFPA Live Network 4G/5G (The Connected AI testbed).
 
-We'll first install Docker, Docker-Compose, Kubernetes, Calico, and Helm, then we'll setup some configurations to run the available scenarios.
+We'll first install [Docker](https://www.docker.com/), [Docker-Compose](https://docs.docker.com/compose/), [Kubernetes](https://kubernetes.io/), [Calico](https://www.projectcalico.org/), and [Helm](https://helm.sh/), then we'll setup some configurations to run the available scenarios.
 
+## Overview
+
+UFPA Live Network 4G/5G (The Connected AI testbed) allows building flexible and realistic scenarios where different network topologies for 4G/5G and quickly deploy them. 
+
+![UFPA_Live_5G_Network__2_](/uploads/b63d4f758f295f2a81d009275999fff2/UFPA_Live_5G_Network__2_.png)
 ## Key Concepts
 
-* Free5gc - https://www.free5gc.org/ : The free5GC is an open-source project for 5th generation (5G) mobile core networks. 
+* [Free5gc](https://www.free5gc.org/): The free5GC is an open-source project for 5th generation (5G) mobile core networks. The source code of free5GC stage 1 can be downloaded from [here](https://bitbucket.org/nctu_5g/free5gc-stage-1/src/master/).
 
-* OAI-RAN Project - https://www.openairinterface.org/?page_id=2763 : OAI Radio Access Network (OAI-RAN). This project implements 4G LTE and 5G Radio Access Network. Both NodeB and User Equipment (UE) are implemented. 
+  * Free5gc creates the following Network architecture:
 
-* Already today OAI offers several functional splits for its 4G radio stack, for example between the Radio Cloud Center (RCC) and a Remote Radio Unit (RRU).
+![images](/uploads/f6e86a5ad205844d551c3a461197633a/images.png) 
 
-* OAI can now be run in both monolithic eNB mode and nFAPI mode (which PNF runs PHY and VNF runs MAC,etc).
+* [OAI Radio Access Network (OAI-RAN)](https://www.openairinterface.org/?page_id=2763): This project implements 4G LTE and 5G Radio Access Network. Both ENodeB and User Equipment (UE) are implemented. 
+
+  * Already today OAI offers several functional splits, for example between the Radio Cloud Center (RCC) and a Remote Radio Unit (RRU), know as [C-RAN mode of the OAI eNB](https://gitlab.eurecom.fr/oai/openairinterface5g/-/wikis/how-to-connect-cots-ue-to-oai-enb-via-ngfi-rru).
+
+  * Also, OAI can be run in both monolithic ENodeB mode and [nFAPI mode](https://gitlab.eurecom.fr/oai/openairinterface5g/-/wikis/nFAPI-howto) (which PNF runs PHY and VNF runs MAC,etc).
+
+* [Flexran](http://mosaic5g.io/flexran/): A Flexible and programmable platform for Software-Defined Radio Access Networks.
 
 ## Prerequisites
 
@@ -43,7 +54,7 @@ kubectl apply -f https://docs.projectcalico.org/v3.11/manifests/calico.yaml
 The next step is to build the OAI-RAN and Free5GC Docker images. For this, clone this Git repository (and submodules):
 
 ```
-git clone --recurse-submodules https://gitlab.lasse.ufpa.br/2020-ai-testbed/ai-testbed/documentation.git
+git clone --recurse-submodules https://gitlab.lasse.ufpa.br/2020-ai-testbed/ai-testbed/connected-ai-testbed
 ```
 
 And inside /oai-ran-docker and /free5gc-docker-kube/cluster paths run:
@@ -64,11 +75,12 @@ Core | AMF, UPF | Core
 VNF, PNF, RCC, RRU | VNF, RCC | -
 FLEXRAN-CONTROLLER | FLEXRAN-CONTROLLER| -
 
-Last step, [install Helm](https://helm.sh/docs/intro/install/) in Master Node.
+Last step, [install Helm](https://helm.sh/docs/intro/install/) in your Master Node.
 
 ## Available scenarios
 
-VNF-PLACEMENT 
+**VNF-PLACEMENT **
+
 
 |            | antenna | edge        | cloud                |
 |:----------:|---------|-------------|----------------------|
@@ -78,7 +90,8 @@ VNF-PLACEMENT
 | CRAN-SCENARIO| PNF     | VNF+FLEXRAN-CONTROLLER | Core |
 | MONOLITH-SCENARIO| PNF+VNF    | FLEXRAN-CONTROLLER | Core |
 
-DRONE
+**DRONE**
+
 
 |            | antenna | edge        | cloud                |
 |:----------:|---------|-------------|----------------------|
@@ -91,7 +104,7 @@ DRONE
 
 ## Create scenarios
 
-To create the desired scenario, just enter the scenario folder and run:
+To create the desired scenario, just access the scenario folder inside any of our categories folders and run:
 
 ```
 bash create-scenario.sh
@@ -110,5 +123,3 @@ Access logs of each pod through master node:
 ```shell
 kubectl logs <pod name>
 ```
-
-
