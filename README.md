@@ -11,13 +11,34 @@ UFPA Live Network 4G/5G (The Connected AI testbed) allows building flexible and 
 
 ![UFPA_Live_5G_Network__2_](https://gitlab.lasse.ufpa.br/2020-ai-testbed/ai-testbed/project-agenda/uploads/b63d4f758f295f2a81d009275999fff2/UFPA_Live_5G_Network__2_.png)
 
+
+## Available scenarios
+
+**VNF-PLACEMENT**
+
+
+|            | antenna | edge        | cloud                |
+|:----------:|---------|-------------|----------------------|
+| ALL-IN- ONE | VNF, PNF, FLEXRAN-CONTROLLER and Core     |         |                 |
+| AMF-EDGE-SCENARIO | PNF   | VNF+AMF+FLEXRAN-CONTROLLER     | Core w/o AMF         |
+| AMF-UPF-SCENARIO | PNF     | VNF+AMF+UPF+FLEXRAN-CONTROLLER | Core w/o AMF and UPF |
+| CRAN-SCENARIO| PNF     | VNF+FLEXRAN-CONTROLLER | Core |
+| MONOLITH-SCENARIO| PNF+VNF    | FLEXRAN-CONTROLLER | Core |
+
+**DRONE**
+
+
+|            | antenna | edge        | cloud                |
+|:----------:|---------|-------------|----------------------|
+| ALL-IN- ONE | RCC, RRU, FLEXRAN-CONTROLLER and Core     |         |                 |
+| AMF-EDGE-SCENARIO | RRU   | RCC+AMF+FLEXRAN-CONTROLLER     | Core w/o AMF         |
+| AMF-UPF-SCENARIO | RRU     | RCC+AMF+UPF+FLEXRAN-CONTROLLER | Core w/o AMF and UPF |
+| CRAN-SCENARIO| RRU     | RCC+FLEXRAN-CONTROLLER | Core |
+| MONOLITH-SCENARIO| RCC+RRU    | FLEXRAN-CONTROLLER | Core |
+
 ## Key Concepts
 
 * [Free5gc](https://www.free5gc.org/): The free5GC is an open-source project for 5th generation (5G) mobile core networks. The source code of free5GC stage 1 can be downloaded from [here](https://bitbucket.org/nctu_5g/free5gc-stage-1/src/master/).
-
-  * Free5gc creates the following Network architecture:
-
-![images](https://i.imgur.com/GptM18w.png) 
 
 * [OAI Radio Access Network (OAI-RAN)](https://www.openairinterface.org/?page_id=2763): This project implements 4G LTE and 5G Radio Access Network. Both ENodeB and User Equipment (UE) are implemented. 
 
@@ -77,30 +98,6 @@ VNF, PNF, RCC, RRU | VNF, RCC | -
 FLEXRAN-CONTROLLER | FLEXRAN-CONTROLLER| -
 
 Last step, [install Helm](https://helm.sh/docs/intro/install/) in your Master Node.
-
-## Available scenarios
-
-**VNF-PLACEMENT**
-
-
-|            | antenna | edge        | cloud                |
-|:----------:|---------|-------------|----------------------|
-| ALL-IN- ONE | VNF, PNF, FLEXRAN-CONTROLLER and Core     |         |                 |
-| AMF-EDGE-SCENARIO | PNF   | VNF+AMF+FLEXRAN-CONTROLLER     | Core w/o AMF         |
-| AMF-UPF-SCENARIO | PNF     | VNF+AMF+UPF+FLEXRAN-CONTROLLER | Core w/o AMF and UPF |
-| CRAN-SCENARIO| PNF     | VNF+FLEXRAN-CONTROLLER | Core |
-| MONOLITH-SCENARIO| PNF+VNF    | FLEXRAN-CONTROLLER | Core |
-
-**DRONE**
-
-
-|            | antenna | edge        | cloud                |
-|:----------:|---------|-------------|----------------------|
-| ALL-IN- ONE | RCC, RRU, FLEXRAN-CONTROLLER and Core     |         |                 |
-| AMF-EDGE-SCENARIO | RRU   | RCC+AMF+FLEXRAN-CONTROLLER     | Core w/o AMF         |
-| AMF-UPF-SCENARIO | RRU     | RCC+AMF+UPF+FLEXRAN-CONTROLLER | Core w/o AMF and UPF |
-| CRAN-SCENARIO| RRU     | RCC+FLEXRAN-CONTROLLER | Core |
-| MONOLITH-SCENARIO| RCC+RRU    | FLEXRAN-CONTROLLER | Core |
 
 
 ## Create scenarios
