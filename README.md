@@ -9,14 +9,15 @@ We'll first install [Docker](https://www.docker.com/), [Docker-Compose](https://
 
 UFPA Live Network 4G/5G (The Connected AI testbed) allows building flexible and realistic scenarios where different network topologies for 4G/5G and quickly deploy them. 
 
-![UFPA_Live_5G_Network__2_](/uploads/b63d4f758f295f2a81d009275999fff2/UFPA_Live_5G_Network__2_.png)
+![UFPA_Live_5G_Network__2_](https://gitlab.lasse.ufpa.br/2020-ai-testbed/ai-testbed/project-agenda/uploads/b63d4f758f295f2a81d009275999fff2/UFPA_Live_5G_Network__2_.png)
+
 ## Key Concepts
 
 * [Free5gc](https://www.free5gc.org/): The free5GC is an open-source project for 5th generation (5G) mobile core networks. The source code of free5GC stage 1 can be downloaded from [here](https://bitbucket.org/nctu_5g/free5gc-stage-1/src/master/).
 
   * Free5gc creates the following Network architecture:
 
-![images](/uploads/f6e86a5ad205844d551c3a461197633a/images.png) 
+![images](https://i.imgur.com/GptM18w.png) 
 
 * [OAI Radio Access Network (OAI-RAN)](https://www.openairinterface.org/?page_id=2763): This project implements 4G LTE and 5G Radio Access Network. Both ENodeB and User Equipment (UE) are implemented. 
 
@@ -79,7 +80,7 @@ Last step, [install Helm](https://helm.sh/docs/intro/install/) in your Master No
 
 ## Available scenarios
 
-**VNF-PLACEMENT **
+**VNF-PLACEMENT**
 
 
 |            | antenna | edge        | cloud                |
