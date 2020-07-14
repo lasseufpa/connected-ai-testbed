@@ -16,9 +16,6 @@
 [submodule "all-in-one"]
 	path = all-in-one
 	url = https://gitlab.lasse.ufpa.br/2020-ai-testbed/ai-testbed/use-cases/vnf-placement/all-in-one.git
-[submodule "scenarios/helm-charts"]
-	path = scenarios/helm-charts
-	url = https://gitlab.lasse.ufpa.br/2020-ai-testbed/ai-testbed/helm-charts.git
 [submodule "helm-charts"]
 	path = helm-charts
 	url = https://gitlab.lasse.ufpa.br/2020-ai-testbed/ai-testbed/helm-charts.git
