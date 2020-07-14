@@ -7,9 +7,6 @@
 [submodule "ran-slice-scenarios/cran-scenario"]
 	path = ran-slice-scenarios/cran-scenario
 	url = https://gitlab.lasse.ufpa.br/2020-ai-testbed/ai-testbed/use-cases/vnf-placement/cran-scenario.git
-[submodule "ran-slice-scenarios/ran-slicing-simple-scenario"]
-	path = ran-slice-scenarios/ran-slicing-simple-scenario
-	url = https://gitlab.lasse.ufpa.br/2020-ai-testbed/ai-testbed/use-cases/flexran-ran-slice/ran-slicing-simple-scenario.git
 [submodule "cran-scenario"]
 	path = cran-scenario
 	url = https://gitlab.lasse.ufpa.br/2020-ai-testbed/ai-testbed/use-cases/vnf-placement/cran-scenario.git
@@ -19,3 +16,9 @@
 [submodule "all-in-one"]
 	path = all-in-one
 	url = https://gitlab.lasse.ufpa.br/2020-ai-testbed/ai-testbed/use-cases/vnf-placement/all-in-one.git
+[submodule "scenarios/helm-charts"]
+	path = scenarios/helm-charts
+	url = https://gitlab.lasse.ufpa.br/2020-ai-testbed/ai-testbed/helm-charts.git
+[submodule "helm-charts"]
+	path = helm-charts
+	url = https://gitlab.lasse.ufpa.br/2020-ai-testbed/ai-testbed/helm-charts.git
