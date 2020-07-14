@@ -64,9 +64,9 @@ helm install ../helm-charts/free5gc/ --generate-name --set name=mongo-lasse &>/d
 sleep 5s
 helm install ../helm-charts/free5gc --generate-name --set name=hss &>/dev/null &
 sleep 5s
-helm install ../helm-charts/free5gc --generate-name --set name=amf -set nodeAffinity.values=edge &>/dev/null &
+helm install ../helm-charts/free5gc --generate-name --set name=amf --set nodeAffinity.values=edge &>/dev/null &
 sleep 5s
-helm install ../helm-charts/free5gc --generate-name --set name=upf -set nodeAffinity.values=edge &>/dev/null &
+helm install ../helm-charts/free5gc --generate-name --set name=upf --set nodeAffinity.values=edge &>/dev/null &
 sleep 5s
 helm install ../helm-charts/free5gc --generate-name --set name=smf &>/dev/null &
 sleep 5s
@@ -91,7 +91,7 @@ helm install ../helm-charts/free5gc/ --generate-name --set name=mongo-lasse &>/d
 sleep 5s
 helm install ../helm-charts/free5gc --generate-name --set name=hss &>/dev/null &
 sleep 5s
-helm install ../helm-charts/free5gc --generate-name --set name=amf -set nodeAffinity.values=edge &>/dev/null &
+helm install ../helm-charts/free5gc --generate-name --set name=amf --set nodeAffinity.values=edge &>/dev/null &
 sleep 5s
 helm install ../helm-charts/free5gc --generate-name --set name=upf &>/dev/null &
 sleep 5s
