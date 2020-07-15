@@ -102,7 +102,7 @@ Last step, [install Helm](https://helm.sh/docs/intro/install/) in your Master No
 
 ## Create scenarios
 
-To create the desired scenario, inside any of our categories folders and run:
+To create the desired scenario, **inside any of our scenarios folders (VNF-PLACEMENT OR DRONE)** run:
 
 ```
 bash create-scenario.sh --<SCENARIO TYPE>
