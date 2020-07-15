@@ -17,9 +17,9 @@ Connected AI testbed allows building flexible and realistic scenarios where diff
 **VNF-PLACEMENT**
 
 
-|            | antenna | edge        | cloud                |
+|           | antenna | edge        | cloud                |
 |:----------:|---------|-------------|----------------------|
-| ALL-IN- ONE | VNF, PNF, FLEXRAN-CONTROLLER and Core     |         |                 |
+| ALL-IN-ONE-SCENARIO | VNF, PNF, FLEXRAN-CONTROLLER and Core     |         |                 |
 | AMF-EDGE-SCENARIO | PNF   | VNF+AMF+FLEXRAN-CONTROLLER     | Core w/o AMF         |
 | AMF-UPF-SCENARIO | PNF     | VNF+AMF+UPF+FLEXRAN-CONTROLLER | Core w/o AMF and UPF |
 | CRAN-SCENARIO| PNF     | VNF+FLEXRAN-CONTROLLER | Core |
@@ -102,11 +102,18 @@ Last step, [install Helm](https://helm.sh/docs/intro/install/) in your Master No
 
 ## Create scenarios
 
-To create the desired scenario, just access the scenario folder inside any of our categories folders and run:
+To create the desired scenario, **inside any of our scenarios folders (VNF-PLACEMENT OR DRONE)** run:
 
 ```
-bash create-scenario.sh
+bash create-scenario.sh --<SCENARIO TYPE>
 ```
+
+### Types:
+--ALL-IN-ONE-SCENARIO
+--AMF-EDGE-SCENARIO
+--AMF-UPF-EDGE-SCENARIO
+--CRAN-SCENARIO
+--MONOLITH-SCENARIO
 
 To end the scenario:
 
