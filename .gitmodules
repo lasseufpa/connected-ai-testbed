@@ -1,21 +1,9 @@
 [submodule "free5gc-docker-kube"]
 	path = free5gc-docker-kube
-	url = https://gitlab.lasse.ufpa.br/2020-ai-testbed/ai-testbed/free5gc-docker-kube.git
+	url = https://github.com/lasseufpa/connect-ai-testebed-free5gc-docker-kube.git
 [submodule "oai-ran-docker"]
 	path = oai-ran-docker
-	url = https://gitlab.lasse.ufpa.br/2020-ai-testbed/ai-testbed/oai-ran-docker.git
-[submodule "ran-slice-scenarios/cran-scenario"]
-	path = ran-slice-scenarios/cran-scenario
-	url = https://gitlab.lasse.ufpa.br/2020-ai-testbed/ai-testbed/use-cases/vnf-placement/cran-scenario.git
-[submodule "cran-scenario"]
-	path = cran-scenario
-	url = https://gitlab.lasse.ufpa.br/2020-ai-testbed/ai-testbed/use-cases/vnf-placement/cran-scenario.git
-[submodule "monolith-scenario"]
-	path = monolith-scenario
-	url = https://gitlab.lasse.ufpa.br/2020-ai-testbed/ai-testbed/use-cases/vnf-placement/monolith-scenario.git
-[submodule "all-in-one"]
-	path = all-in-one
-	url = https://gitlab.lasse.ufpa.br/2020-ai-testbed/ai-testbed/use-cases/vnf-placement/all-in-one.git
+	url = https://github.com/lasseufpa/connect-ai-testebed-OAI-RAN-docker.git
 [submodule "helm-charts"]
 	path = helm-charts
-	url = https://gitlab.lasse.ufpa.br/2020-ai-testbed/ai-testbed/helm-charts.git
+	url = https://github.com/lasseufpa/connect-ai-testebed-helmcharts.git
