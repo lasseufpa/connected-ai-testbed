@@ -50,18 +50,12 @@ Connected AI testbed allows building flexible and realistic scenarios where diff
 
 ## Prerequisites
 
-Node Minimum Requirement:
+[Free5GC Minimum Requirements](https://www.free5gc.org/installation)
 
-Software:
-* OS: Ubuntu 18.04
-* Linux kernel: 4.15.0-43-generic
+[OAI-RAN Minimum Requirements](https://gitlab.eurecom.fr/oai/openairinterface5g/-/wikis/OpenAirSystemRequirements)
 
-Hardware
-* CPU: Intel i5 processor
-* RAM: 4GB
-* Hard drive: 160G
-* NIC card: 1Gbps ethernet card
-* USRP B210
+[OAI-RAN Kernel Requirements for RAN](https://gitlab.eurecom.fr/oai/openairinterface5g/-/wikis/OpenAirKernelMainSetup)
+
 
 Our installation method requires that you first have installed [Docker](https://docs.docker.com/engine/install/), [Docker-Compose](https://docs.docker.com/compose/install/), and [Kubernetes](https://kubernetes.io/docs/setup/) in all cluster nodes. Our recommended quickstart method to deploy UFPA Live Network 4G/5G is using three cluster nodes (Antenna, Cloud, and Edge), or, another option is using only one node (Antenna).
 
