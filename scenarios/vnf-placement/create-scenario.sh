@@ -6,25 +6,25 @@ if [ "$var" == "--CRAN-SCENARIO" ]; then
 
 echo "SCENARIO" $var
 
-helm install ../helm-charts/free5gc/ --generate-name --set name=mongo-lasse &>/dev/null &
+helm install ../../helm-charts/free5gc/ --generate-name --set name=mongo-lasse &>/dev/null &
 sleep 5s
-helm install ../helm-charts/free5gc --generate-name --set name=hss &>/dev/null &
+helm install ../../helm-charts/free5gc --generate-name --set name=hss &>/dev/null &
 sleep 5s
-helm install ../helm-charts/free5gc --generate-name --set name=amf &>/dev/null &
+helm install ../../helm-charts/free5gc --generate-name --set name=amf &>/dev/null &
 sleep 5s
-helm install ../helm-charts/free5gc --generate-name --set name=upf &>/dev/null &
+helm install ../../helm-charts/free5gc --generate-name --set name=upf &>/dev/null &
 sleep 5s
-helm install ../helm-charts/free5gc --generate-name --set name=smf &>/dev/null &
+helm install ../../helm-charts/free5gc --generate-name --set name=smf &>/dev/null &
 sleep 5s
-helm install ../helm-charts/free5gc --generate-name --set name=pcrf &>/dev/null &
+helm install ../../helm-charts/free5gc --generate-name --set name=pcrf &>/dev/null &
 sleep 5s
-helm install ../helm-charts/free5gc --generate-name --set name=webapp &>/dev/null &
+helm install ../../helm-charts/free5gc --generate-name --set name=webapp &>/dev/null &
 sleep 5s
-helm install ../helm-charts/simplechart/ --generate-name --set name=vnf --set nodeAffinity.values=edge &>/dev/null &
+helm install ../../helm-charts/simplechart/ --generate-name --set name=vnf --set nodeAffinity.values=edge &>/dev/null &
 sleep 5s
-helm install ../helm-charts/simplechart/ --generate-name --set name=pnf --set nodeAffinity.values=antenna &>/dev/null &
+helm install ../../helm-charts/simplechart/ --generate-name --set name=pnf --set nodeAffinity.values=antenna &>/dev/null &
 sleep 5s
-helm install ../helm-charts/simplechart/ --generate-name --set name=flexran-controller --set nodeAffinity.values=edge &>/dev/null &
+helm install ../../helm-charts/simplechart/ --generate-name --set name=flexran-controller --set nodeAffinity.values=edge &>/dev/null &
 sleep 60s
 
 fi
@@ -33,25 +33,25 @@ if [ "$var" == "--ALL-IN-ONE-SCENARIO" ]; then
 
 echo "SCENARIO" $var
 
-helm install ../helm-charts/free5gc/ --generate-name --set name=mongo-lasse --set nodeAffinity.values=antenna &>/dev/null &
+helm install ../../helm-charts/free5gc/ --generate-name --set name=mongo-lasse --set nodeAffinity.values=antenna &>/dev/null &
 sleep 5s
-helm install ../helm-charts/free5gc --generate-name --set name=hss --set nodeAffinity.values=antenna &>/dev/null &
+helm install ../../helm-charts/free5gc --generate-name --set name=hss --set nodeAffinity.values=antenna &>/dev/null &
 sleep 5s
-helm install ../helm-charts/free5gc --generate-name --set name=amf --set nodeAffinity.values=antenna &>/dev/null &
+helm install ../../helm-charts/free5gc --generate-name --set name=amf --set nodeAffinity.values=antenna &>/dev/null &
 sleep 5s
-helm install ../helm-charts/free5gc --generate-name --set name=upf --set nodeAffinity.values=antenna &>/dev/null &
+helm install ../../helm-charts/free5gc --generate-name --set name=upf --set nodeAffinity.values=antenna &>/dev/null &
 sleep 5s
-helm install ../helm-charts/free5gc --generate-name --set name=smf --set nodeAffinity.values=antenna &>/dev/null &
+helm install ../../helm-charts/free5gc --generate-name --set name=smf --set nodeAffinity.values=antenna &>/dev/null &
 sleep 5s
-helm install ../helm-charts/free5gc --generate-name --set name=pcrf --set nodeAffinity.values=antenna &>/dev/null &
+helm install ../../helm-charts/free5gc --generate-name --set name=pcrf --set nodeAffinity.values=antenna &>/dev/null &
 sleep 5s
-helm install ../helm-charts/free5gc --generate-name --set name=webapp --set nodeAffinity.values=antenna &>/dev/null &
+helm install ../../helm-charts/free5gc --generate-name --set name=webapp --set nodeAffinity.values=antenna &>/dev/null &
 sleep 5s
-helm install ../helm-charts/simplechart/ --generate-name --set name=vnf --set nodeAffinity.values=antenna &>/dev/null &
+helm install ../../helm-charts/simplechart/ --generate-name --set name=vnf --set nodeAffinity.values=antenna &>/dev/null &
 sleep 5s
-helm install ../helm-charts/simplechart/ --generate-name --set name=pnf --set nodeAffinity.values=antenna &>/dev/null &
+helm install ../../helm-charts/simplechart/ --generate-name --set name=pnf --set nodeAffinity.values=antenna &>/dev/null &
 sleep 5s
-helm install ../helm-charts/simplechart/ --generate-name --set name=flexran-controller --set nodeAffinity.values=antenna &>/dev/null &
+helm install ../../helm-charts/simplechart/ --generate-name --set name=flexran-controller --set nodeAffinity.values=antenna &>/dev/null &
 sleep 60s
 
 fi
@@ -60,25 +60,25 @@ if [ "$var" == "--AMF-UPF-EDGE-SCENARIO" ]; then
 
 echo "SCENARIO" $var
 
-helm install ../helm-charts/free5gc/ --generate-name --set name=mongo-lasse &>/dev/null &
+helm install ../../helm-charts/free5gc/ --generate-name --set name=mongo-lasse &>/dev/null &
 sleep 5s
-helm install ../helm-charts/free5gc --generate-name --set name=hss &>/dev/null &
+helm install ../../helm-charts/free5gc --generate-name --set name=hss &>/dev/null &
 sleep 5s
-helm install ../helm-charts/free5gc --generate-name --set name=amf --set nodeAffinity.values=edge &>/dev/null &
+helm install ../../helm-charts/free5gc --generate-name --set name=amf --set nodeAffinity.values=edge &>/dev/null &
 sleep 5s
-helm install ../helm-charts/free5gc --generate-name --set name=upf --set nodeAffinity.values=edge &>/dev/null &
+helm install ../../helm-charts/free5gc --generate-name --set name=upf --set nodeAffinity.values=edge &>/dev/null &
 sleep 5s
-helm install ../helm-charts/free5gc --generate-name --set name=smf &>/dev/null &
+helm install ../../helm-charts/free5gc --generate-name --set name=smf &>/dev/null &
 sleep 5s
-helm install ../helm-charts/free5gc --generate-name --set name=pcrf &>/dev/null &
+helm install ../../helm-charts/free5gc --generate-name --set name=pcrf &>/dev/null &
 sleep 5s
-helm install ../helm-charts/free5gc --generate-name --set name=webapp &>/dev/null &
+helm install ../../helm-charts/free5gc --generate-name --set name=webapp &>/dev/null &
 sleep 5s
-helm install ../helm-charts/simplechart/ --generate-name --set name=vnf --set nodeAffinity.values=edge &>/dev/null &
+helm install ../../helm-charts/simplechart/ --generate-name --set name=vnf --set nodeAffinity.values=edge &>/dev/null &
 sleep 5s
-helm install ../helm-charts/simplechart/ --generate-name --set name=pnf --set nodeAffinity.values=antenna &>/dev/null &
+helm install ../../helm-charts/simplechart/ --generate-name --set name=pnf --set nodeAffinity.values=antenna &>/dev/null &
 sleep 5s
-helm install ../helm-charts/simplechart/ --generate-name --set name=flexran-controller --set nodeAffinity.values=edge &>/dev/null &
+helm install ../../helm-charts/simplechart/ --generate-name --set name=flexran-controller --set nodeAffinity.values=edge &>/dev/null &
 sleep 60s
 
 fi
@@ -87,25 +87,25 @@ if [ "$var" == "--AMF-EDGE-SCENARIO" ]; then
 
 echo "SCENARIO" $var
 
-helm install ../helm-charts/free5gc/ --generate-name --set name=mongo-lasse &>/dev/null &
+helm install ../../helm-charts/free5gc/ --generate-name --set name=mongo-lasse &>/dev/null &
 sleep 5s
-helm install ../helm-charts/free5gc --generate-name --set name=hss &>/dev/null &
+helm install ../../helm-charts/free5gc --generate-name --set name=hss &>/dev/null &
 sleep 5s
-helm install ../helm-charts/free5gc --generate-name --set name=amf --set nodeAffinity.values=edge &>/dev/null &
+helm install ../../helm-charts/free5gc --generate-name --set name=amf --set nodeAffinity.values=edge &>/dev/null &
 sleep 5s
-helm install ../helm-charts/free5gc --generate-name --set name=upf &>/dev/null &
+helm install ../../helm-charts/free5gc --generate-name --set name=upf &>/dev/null &
 sleep 5s
-helm install ../helm-charts/free5gc --generate-name --set name=smf &>/dev/null &
+helm install ../../helm-charts/free5gc --generate-name --set name=smf &>/dev/null &
 sleep 5s
-helm install ../helm-charts/free5gc --generate-name --set name=pcrf &>/dev/null &
+helm install ../../helm-charts/free5gc --generate-name --set name=pcrf &>/dev/null &
 sleep 5s
-helm install ../helm-charts/free5gc --generate-name --set name=webapp &>/dev/null &
+helm install ../../helm-charts/free5gc --generate-name --set name=webapp &>/dev/null &
 sleep 5s
-helm install ../helm-charts/simplechart/ --generate-name --set name=vnf --set nodeAffinity.values=edge &>/dev/null &
+helm install ../../helm-charts/simplechart/ --generate-name --set name=vnf --set nodeAffinity.values=edge &>/dev/null &
 sleep 5s
-helm install ../helm-charts/simplechart/ --generate-name --set name=pnf --set nodeAffinity.values=antenna &>/dev/null &
+helm install ../../helm-charts/simplechart/ --generate-name --set name=pnf --set nodeAffinity.values=antenna &>/dev/null &
 sleep 5s
-helm install ../helm-charts/simplechart/ --generate-name --set name=flexran-controller --set nodeAffinity.values=edge &>/dev/null &
+helm install ../../helm-charts/simplechart/ --generate-name --set name=flexran-controller --set nodeAffinity.values=edge &>/dev/null &
 sleep 60s
 
 fi
@@ -114,25 +114,25 @@ if [ "$var" == "--MONOLITH-SCENARIO" ]; then
 
 echo "SCENARIO" $var
 
-helm install ../helm-charts/free5gc/ --generate-name --set name=mongo-lasse &>/dev/null &
+helm install ../../helm-charts/free5gc/ --generate-name --set name=mongo-lasse &>/dev/null &
 sleep 5s
-helm install ../helm-charts/free5gc --generate-name --set name=hss &>/dev/null &
+helm install ../../helm-charts/free5gc --generate-name --set name=hss &>/dev/null &
 sleep 5s
-helm install ../helm-charts/free5gc --generate-name --set name=amf &>/dev/null &
+helm install ../../helm-charts/free5gc --generate-name --set name=amf &>/dev/null &
 sleep 5s
-helm install ../helm-charts/free5gc --generate-name --set name=upf &>/dev/null &
+helm install ../../helm-charts/free5gc --generate-name --set name=upf &>/dev/null &
 sleep 5s
-helm install ../helm-charts/free5gc --generate-name --set name=smf &>/dev/null &
+helm install ../../helm-charts/free5gc --generate-name --set name=smf &>/dev/null &
 sleep 5s
-helm install ../helm-charts/free5gc --generate-name --set name=pcrf &>/dev/null &
+helm install ../../helm-charts/free5gc --generate-name --set name=pcrf &>/dev/null &
 sleep 5s
-helm install ../helm-charts/free5gc --generate-name --set name=webapp &>/dev/null &
+helm install ../../helm-charts/free5gc --generate-name --set name=webapp &>/dev/null &
 sleep 5s
-helm install ../helm-charts/simplechart/ --generate-name --set name=vnf --set nodeAffinity.values=antenna &>/dev/null &
+helm install ../../helm-charts/simplechart/ --generate-name --set name=vnf --set nodeAffinity.values=antenna &>/dev/null &
 sleep 5s
-helm install ../helm-charts/simplechart/ --generate-name --set name=pnf --set nodeAffinity.values=antenna &>/dev/null &
+helm install ../../helm-charts/simplechart/ --generate-name --set name=pnf --set nodeAffinity.values=antenna &>/dev/null &
 sleep 5s
-helm install ../helm-charts/simplechart/ --generate-name --set name=flexran-controller --set nodeAffinity.values=edge &>/dev/null &
+helm install ../../helm-charts/simplechart/ --generate-name --set name=flexran-controller --set nodeAffinity.values=edge &>/dev/null &
 sleep 60s
 
 fi
