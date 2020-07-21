@@ -1,0 +1,115 @@
+version: "2"
+services:
+    rru:
+        build: ./oai-ran-docker/rru/
+        image: rru
+        privileged: true
+        network_mode: host
+        stdin_open: true
+        tty: true
+        volumes:
+            - "./config_files/:/config_files"
+            - "/dev/bus/usb:/dev/bus/usb"
+
+    rru-ue:
+        build: ./oai-ran-docker/rru-ue/
+        image: rru-ue
+        privileged: true
+        network_mode: host
+        stdin_open: true
+        tty: true
+        volumes:
+            - "./config_files/:/config_files"
+            - "/dev/bus/usb:/dev/bus/usb"
+
+    rcc:
+        build: ./oai-ran-docker/rcc/
+        image: rcc
+        privileged: true
+        network_mode: host
+        stdin_open: true
+        tty: true
+        volumes:
+            - "./config_files/:/config_files"
+            - "/dev/bus/usb:/dev/bus/usb"
+
+    vnf:
+        build: ./oai-ran-docker/vnf/
+        image: vnf
+        privileged: true
+        network_mode: host
+        stdin_open: true
+        tty: true
+        volumes:
+            - "./config_files/:/config_files"
+            - "/dev/bus/usb:/dev/bus/usb"
+
+    pnf:
+        build: ./oai-ran-docker/pnf/
+        image: pnf
+        privileged: true
+        network_mode: host
+        stdin_open: true
+        tty: true
+        volumes:
+            - "./config_files/:/config_files"
+            - "/dev/bus/usb:/dev/bus/usb"
+
+    mongo:
+        build:
+                context: ./free5gc-docker-kube/cluster/mongo
+                dockerfile: Dockerfile
+        image: mongo-lasse
+    
+    amf:
+        build:
+                context: ./free5gc-docker-kube/cluster/amf
+                dockerfile: Dockerfile
+        image: amf
+        privileged: true
+        depends_on:
+            - mongo
+    upf:
+        build:
+                context: ./free5gc-docker-kube/cluster/upf
+                dockerfile: Dockerfile
+        image: upf
+        privileged: true
+        depends_on:
+            - mongo
+        devices:
+              - "/dev/net/tun:/dev/net/tun"
+    smf:
+        build:
+                context: ./free5gc-docker-kube/cluster/smf
+                dockerfile: Dockerfile
+        image: smf
+        depends_on:
+            - mongo
+            - upf
+    hss:
+        build:
+                context: ./free5gc-docker-kube/cluster/hss
+                dockerfile: Dockerfile
+        image: hss
+        depends_on:
+            - mongo
+    pcrf:
+        build:
+                context: ./free5gc-docker-kube/cluster/pcrf
+                dockerfile: Dockerfile
+        image: pcrf
+        depends_on:
+            - mongo
+            - smf
+    webapp:
+        build:
+                context: ./free5gc-docker-kube/cluster/webapp
+                dockerfile: Dockerfile
+        image: webapp
+        ports:
+            - 3000:3000
+        environment:
+            - DB_URI=mongodb://192.188.2.10:27017/free5gc
+        depends_on:
+            - mongo
