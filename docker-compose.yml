@@ -1,5 +1,16 @@
 version: "2"
 services:
+    base-ran:
+        build: ./oai-ran-docker/base/
+        image: base-ran
+        privileged: true
+        network_mode: host
+        stdin_open: true
+        tty: true
+        volumes:
+            - "./config_files/:/config_files"
+            - "/dev/bus/usb:/dev/bus/usb"
+
     rru:
         build: ./oai-ran-docker/rru/
         image: rru
@@ -25,6 +36,16 @@ services:
     rcc:
         build: ./oai-ran-docker/rcc/
         image: rcc
+        privileged: true
+        network_mode: host
+        stdin_open: true
+        tty: true
+        volumes:
+            - "./config_files/:/config_files"
+            - "/dev/bus/usb:/dev/bus/usb"
+    base-ran-nfapi:
+        build: ./oai-ran-docker/base_nfapi/
+        image: base-ran-nfapi
         privileged: true
         network_mode: host
         stdin_open: true
@@ -113,3 +134,14 @@ services:
             - DB_URI=mongodb://192.188.2.10:27017/free5gc
         depends_on:
             - mongo
+
+    flexran-controller:
+        build: ./oai-ran-docker/flexran-controller/
+        image: flexran-controller
+        privileged: true
+        network_mode: host
+        stdin_open: true
+        tty: true
+        volumes:
+            - "./config_files/:/config_files"
+            - "/dev/bus/usb:/dev/bus/usb"
