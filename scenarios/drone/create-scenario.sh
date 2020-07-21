@@ -1,4 +1,7 @@
 #!/bin/bash
+#Choose scenario
+var=$1;
+
 if [ "$var" == "--CRAN-SCENARIO" ]; then
 
 echo "SCENARIO" $var
