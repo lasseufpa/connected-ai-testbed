@@ -227,6 +227,8 @@ kubectl exec $RCC_POD -- bash ./ran.sh > /dev/null 2>&1 &
 sleep 5s
 kubectl exec $RRU_POD -- bash ./ran.sh > /dev/null 2>&1 &
 
+bash ./monitoring.sh > /dev/null 2>&1 &
+
 echo "----------------------------------------------------------"
 echo "RAN initialized"
 echo "----------------------------------------------------------"
