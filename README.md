@@ -99,15 +99,17 @@ Last step, [install Helm](https://helm.sh/docs/intro/install/) in your Master No
 To create the desired scenario, **inside any of our scenarios folders (VNF-PLACEMENT OR DRONE)** run:
 
 ```
-bash create-scenario.sh --<SCENARIO TYPE>
+bash create-scenario.sh -flags
 ```
 
-### Types:
---ALL-IN-ONE-SCENARIO
---AMF-EDGE-SCENARIO
---AMF-UPF-EDGE-SCENARIO
---CRAN-SCENARIO
---MONOLITH-SCENARIO
+### Flags:
+-b BAND. Default: 28
+
+-d DOWNLINK. Default: 760500000L
+
+-s SCENARIO(c-ran, all-in-one, amf-upf-edge, amf-edge or monolith). Default: c-ran
+
+-u UPLINK. Default: -55000000
 
 To end the scenario:
 

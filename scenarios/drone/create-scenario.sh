@@ -1,8 +1,39 @@
 #!/bin/bash
-#Choose scenario
-var=$1;
 
-if [ "$var" == "--CRAN-SCENARIO" ]; then
+#read flags
+while getopts b:d:s:u flag
+	do
+	    case "${flag}" in
+	        b) band=${OPTARG};;
+	        d) downlink=${OPTARG};;
+	        s) var=${OPTARG};;
+	        u) uplink=${OPTARG};;
+	    esac
+	done
+
+	#DEFAULT VALUES
+if [ ! $band ]
+  then
+    band='28'
+fi
+
+if [ ! $downlink ]
+  then
+    downlink='760500000L'
+fi
+
+if [ ! $var ]
+  then
+    var='c-ran'
+fi
+
+if [ ! $uplink ]
+  then
+    uplink='-55000000'
+fi
+
+#Choose scenario
+if [ "$var" == "c-ran" ]; then
 
 echo "SCENARIO" $var
 
@@ -29,7 +60,7 @@ sleep 60s
 
 fi
 
-if [ "$var" == "--ALL-IN-ONE-SCENARIO" ]; then
+if [ "$var" == "all-in-one" ]; then
 
 echo "SCENARIO" $var
 
@@ -56,7 +87,7 @@ sleep 60s
 
 fi
 
-if [ "$var" == "--AMF-UPF-EDGE-SCENARIO" ]; then
+if [ "$var" == "amf-upf-edge" ]; then
 
 echo "SCENARIO" $var
 
@@ -83,7 +114,7 @@ sleep 60s
 
 fi
 
-if [ "$var" == "--AMF-EDGE-SCENARIO" ]; then
+if [ "$var" == "amf-edge" ]; then
 
 echo "SCENARIO" $var
 
@@ -110,7 +141,7 @@ sleep 60s
 
 fi
 
-if [ "$var" == "--MONOLITH-SCENARIO" ]; then
+if [ "$var" == "monolith" ]; then
 
 echo "SCENARIO" $var
 
@@ -139,6 +170,9 @@ fi
 
 echo "----------------------------------------------------------"
 echo "Scenario mounted in Kubernetes."
+echo "Band = $band"
+echo "Downlink = $downlink"
+echo "Uplink = $uplink"
 echo "----------------------------------------------------------"
 
 #Free5gc init
@@ -204,6 +238,7 @@ kubectl exec $RRU_POD -- sed -i "s|local_if_name.*;|local_if_name               
 kubectl exec $RRU_POD -- sed -i "s|\"127.0.0.1\"|\"$RCC_IP\";|g" ./ci-scripts/conf_files/rru.fdd.band7.conf
 kubectl exec $RRU_POD -- sed -i "s|remote_address.*;|remote_address                   = \"$RCC_IP\";|g" ./ci-scripts/conf_files/rru.fdd.band7.conf
 kubectl exec $RRU_POD -- sed -i "s|local_address.*;|local_address                    = \"$RRU_IP\";|g" ./ci-scripts/conf_files/rru.fdd.band7.conf
+kubectl exec $RRU_POD -- sed -i "s|bands.*;|bands                            = [$band];|g" ./ci-scripts/conf_files/rru.fdd.band7.conf
 
 #RCC
 kubectl exec $RCC_POD -- sed -i "s|mcc = 208;|mcc = 208;|g" ./ci-scripts/conf_files/rcc.band7.tm1.if4p5.lo.25PRB.usrpb210.conf
@@ -215,6 +250,10 @@ kubectl exec $RCC_POD -- sed -i "s|ENB_IPV4_ADDRESS_FOR_X2C.*;|ENB_IPV4_ADDRESS_
 kubectl exec $RCC_POD -- sed -i "s|local_if_name.*;|local_if_name  = \"eth0\";|g" ./ci-scripts/conf_files/rcc.band7.tm1.if4p5.lo.25PRB.usrpb210.conf
 kubectl exec $RCC_POD -- sed -i "s|remote_address.*;|remote_address  = \"$RRU_IP\";|g" ./ci-scripts/conf_files/rcc.band7.tm1.if4p5.lo.25PRB.usrpb210.conf
 kubectl exec $RCC_POD -- sed -i "s|local_address.*;|local_address  = \"$RCC_IP\";|g" ./ci-scripts/conf_files/rcc.band7.tm1.if4p5.lo.25PRB.usrpb210.conf
+kubectl exec $RCC_POD -- sed -i "s|eutra_band.*;|eutra_band              			      = $band;|g" ./ci-scripts/conf_files/rcc.band7.tm1.if4p5.lo.25PRB.usrpb210.conf
+kubectl exec $RCC_POD -- sed -i "s|downlink_frequency.*;|downlink_frequency      			      = $downlink;|g" ./ci-scripts/conf_files/rcc.band7.tm1.if4p5.lo.25PRB.usrpb210.conf
+kubectl exec $RCC_POD -- sed -i "s|uplink_frequency_offset.*;|uplink_frequency_offset 			      = $uplink;|g" ./ci-scripts/conf_files/rcc.band7.tm1.if4p5.lo.25PRB.usrpb210.conf
+
 
 #flexran config
 kubectl exec $RCC_POD -- sed -i "s|FLEXRAN_ENABLED.*;|FLEXRAN_ENABLED        = \"yes\";|g" ./ci-scripts/conf_files/rcc.band7.tm1.if4p5.lo.25PRB.usrpb210.conf
@@ -227,7 +266,7 @@ kubectl exec $RCC_POD -- bash ./ran.sh > /dev/null 2>&1 &
 sleep 5s
 kubectl exec $RRU_POD -- bash ./ran.sh > /dev/null 2>&1 &
 
-bash ./monitoring.sh > /dev/null 2>&1 &
+#bash ./monitoring.sh > /dev/null 2>&1 &
 
 echo "----------------------------------------------------------"
 echo "RAN initialized"
