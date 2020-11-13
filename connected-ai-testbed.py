@@ -33,7 +33,7 @@ if CheckNamespace != "0":
 #Creating
 sp.call(["kubectl", "create", "namespace", namespace], stdin=PIPE, stdout=DEVNULL, stderr=STDOUT)
 
-#Creating deployments
+#Creating deployments using Helm Charts
 sp.call(["helm", "install", "./helm-charts/free5gc/", "--generate-name","--set","name=mongo-lasse","--set","namespace="+namespace,"--set","mode="+mode,"--set", "node="+allocation_database], stdin=PIPE, stdout=DEVNULL, stderr=STDOUT)
 time.sleep(5)
 sp.call(["helm", "install", "./helm-charts/free5gc/", "--generate-name","--set","name=amf","--set","namespace="+namespace,"--set","mode="+mode,"--set", "node="+allocation_amf], stdin=PIPE, stdout=DEVNULL, stderr=STDOUT)
@@ -47,3 +47,40 @@ time.sleep(5)
 sp.call(["helm", "install", "./helm-charts/free5gc/", "--generate-name","--set","name=pcrf","--set","namespace="+namespace,"--set","mode="+mode,"--set", "node="+allocation_pcrf], stdin=PIPE, stdout=DEVNULL, stderr=STDOUT)
 time.sleep(5)
 sp.call(["helm", "install", "./helm-charts/free5gc/", "--generate-name","--set","name=webapp","--set","namespace="+namespace,"--set","mode="+mode,"--set", "node="+allocation_webapp], stdin=PIPE, stdout=DEVNULL, stderr=STDOUT)
+
+
+#Starting All Functions
+MONGO_POD = sp.getoutput('kubectl get pod -l app=mongo-lasse -o jsonpath="{.items[0].metadata.name}" -n'+namespace)
+HSS_POD = sp.getoutput('kubectl get pod -l app=hss -o jsonpath="{.items[0].metadata.name}" -n'+namespace)
+AMF_POD = sp.getoutput('kubectl get pod -l app=amf -o jsonpath="{.items[0].metadata.name}" -n'+namespace)
+UPF_POD = sp.getoutput('kubectl get pod -l app=upf -o jsonpath="{.items[0].metadata.name}" -n'+namespace)
+SMF_POD = sp.getoutput('kubectl get pod -l app=smf -o jsonpath="{.items[0].metadata.name}" -n'+namespace)
+PCRF_POD = sp.getoutput('kubectl get pod -l app=pcrf -o jsonpath="{.items[0].metadata.name}" -n'+namespace)
+WEBAPP_POD = sp.getoutput('kubectl get pod -l app=webapp -o jsonpath="{.items[0].metadata.name}" -n'+namespace)
+
+MONGO_IP = sp.getoutput('kubectl get pod -l app=mongo-lasse -o jsonpath="{.items[0].status.podIP}" -n'+namespace)
+HSS_IP = sp.getoutput('kubectl get pod -l app=hss -o jsonpath="{.items[0].status.podIP}" -n'+namespace)
+AMF_IP = sp.getoutput('kubectl get pod -l app=amf -o jsonpath="{.items[0].status.podIP}" -n'+namespace)
+UPF_IP = sp.getoutput('kubectl get pod -l app=upf -o jsonpath="{.items[0].status.podIP}" -n'+namespace)
+SMF_IP = sp.getoutput('kubectl get pod -l app=smf -o jsonpath="{.items[0].status.podIP}" -n'+namespace)
+PCRF_IP = sp.getoutput('kubectl get pod -l app=pcrf -o jsonpath="{.items[0].status.podIP}" -n'+namespace)
+
+
+sp.call(["kubectl","-n",namespace,"exec",UPF_POD,"--", "/root/setup.sh"], stdin=PIPE, stdout=DEVNULL, stderr=STDOUT)
+sp.call(["kubectl","-n",namespace,"exec",MONGO_POD,"--", "/usr/src/data/setup-lasse.sh",MONGO_IP], stdin=PIPE, stdout=DEVNULL, stderr=STDOUT)
+time.sleep(5)
+sp.call(["kubectl","-n",namespace,"exec",WEBAPP_POD,"--","/root/setup.sh",MONGO_IP], stdin=PIPE, stdout=DEVNULL, stderr=STDOUT)
+sp.call(["kubectl","-n",namespace,"exec",HSS_POD,"--","./setup-lasse.sh",MONGO_IP, HSS_IP, AMF_IP, UPF_IP, SMF_IP, PCRF_IP], stdin=PIPE, stdout=DEVNULL, stderr=STDOUT)
+time.sleep(5)
+sp.call(["kubectl","-n",namespace,"exec",AMF_POD,"--","./setup-lasse.sh", MONGO_IP, HSS_IP, AMF_IP, UPF_IP, SMF_IP, PCRF_IP], stdin=PIPE, stdout=DEVNULL, stderr=STDOUT)
+time.sleep(5)
+sp.call(["kubectl","-n",namespace,"exec",UPF_POD,"--","./setup-lasse.sh", MONGO_IP, HSS_IP, AMF_IP, UPF_IP, SMF_IP, PCRF_IP], stdin=PIPE, stdout=DEVNULL, stderr=STDOUT)
+time.sleep(5)
+sp.call(["kubectl","-n",namespace,"exec",SMF_POD,"--","./setup-lasse.sh", MONGO_IP, HSS_IP, AMF_IP, UPF_IP, SMF_IP, PCRF_IP], stdin=PIPE, stdout=DEVNULL, stderr=STDOUT)
+time.sleep(5)
+sp.call(["kubectl","-n",namespace,"exec",PCRF_POD,"--","./setup-lasse.sh", MONGO_IP, HSS_IP, AMF_IP, UPF_IP, SMF_IP, PCRF_IP], stdin=PIPE, stdout=DEVNULL, stderr=STDOUT)
+time.sleep(5)
+
+
+
+
