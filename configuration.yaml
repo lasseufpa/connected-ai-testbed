@@ -6,7 +6,7 @@ type: Core
 id: scenario-00
 # Choose whether you want to specify which node name which module should be allocated (node-name) 
 # or whether it should be allocated via node-label (local)
-option: local
+mode: local
 # node-name options: your cluster node names
 # local options: edge, cloud and antenna
 allocation:
