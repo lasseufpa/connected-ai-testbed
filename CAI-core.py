@@ -32,6 +32,7 @@ if CheckNamespace != "0":
   quit()
 #Creating
 sp.call(["kubectl", "create", "namespace", namespace], stdin=PIPE, stdout=DEVNULL, stderr=STDOUT)
+print("namespace created")
 
 #Creating deployments using Helm Charts
 sp.call(["helm", "install", "./helm-charts/free5gc/", "--generate-name","--set","name=mongo-lasse","--set","namespace="+namespace,"--set","mode="+mode,"--set", "node="+allocation_database], stdin=PIPE, stdout=DEVNULL, stderr=STDOUT)
@@ -47,7 +48,7 @@ time.sleep(5)
 sp.call(["helm", "install", "./helm-charts/free5gc/", "--generate-name","--set","name=pcrf","--set","namespace="+namespace,"--set","mode="+mode,"--set", "node="+allocation_pcrf], stdin=PIPE, stdout=DEVNULL, stderr=STDOUT)
 time.sleep(5)
 sp.call(["helm", "install", "./helm-charts/free5gc/", "--generate-name","--set","name=webapp","--set","namespace="+namespace,"--set","mode="+mode,"--set", "node="+allocation_webapp], stdin=PIPE, stdout=DEVNULL, stderr=STDOUT)
-
+print("Pods created")
 
 #Starting All Functions
 MONGO_POD = sp.getoutput('kubectl get pod -l app=mongo-lasse -o jsonpath="{.items[0].metadata.name}" -n'+namespace)
@@ -67,9 +68,13 @@ PCRF_IP = sp.getoutput('kubectl get pod -l app=pcrf -o jsonpath="{.items[0].stat
 
 
 sp.call(["kubectl","-n",namespace,"exec",UPF_POD,"--", "/root/setup.sh"], stdin=PIPE, stdout=DEVNULL, stderr=STDOUT)
+print("UPF function configurated")
 sp.call(["kubectl","-n",namespace,"exec",MONGO_POD,"--", "/usr/src/data/setup-lasse.sh",MONGO_IP], stdin=PIPE, stdout=DEVNULL, stderr=STDOUT)
-time.sleep(5)
+print("Default database created")
+time.sleep(15)
 sp.call(["kubectl","-n",namespace,"exec",WEBAPP_POD,"--","/root/setup.sh",MONGO_IP], stdin=PIPE, stdout=DEVNULL, stderr=STDOUT)
+print("Webapp configurated")
+
 sp.call(["kubectl","-n",namespace,"exec",HSS_POD,"--","./setup-lasse.sh",MONGO_IP, HSS_IP, AMF_IP, UPF_IP, SMF_IP, PCRF_IP], stdin=PIPE, stdout=DEVNULL, stderr=STDOUT)
 time.sleep(5)
 sp.call(["kubectl","-n",namespace,"exec",AMF_POD,"--","./setup-lasse.sh", MONGO_IP, HSS_IP, AMF_IP, UPF_IP, SMF_IP, PCRF_IP], stdin=PIPE, stdout=DEVNULL, stderr=STDOUT)
@@ -80,4 +85,5 @@ sp.call(["kubectl","-n",namespace,"exec",SMF_POD,"--","./setup-lasse.sh", MONGO_
 time.sleep(5)
 sp.call(["kubectl","-n",namespace,"exec",PCRF_POD,"--","./setup-lasse.sh", MONGO_IP, HSS_IP, AMF_IP, UPF_IP, SMF_IP, PCRF_IP], stdin=PIPE, stdout=DEVNULL, stderr=STDOUT)
 time.sleep(5)
+print("All functions started")
 
