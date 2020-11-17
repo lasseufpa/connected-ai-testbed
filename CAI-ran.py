@@ -25,9 +25,17 @@ allocation_vnf = ran_yaml["allocation"]["vnf"]
 allocation_pnf = ran_yaml["allocation"]["pnf"]
 allocation_enb = ran_yaml["allocation"]["enb"]
 
-coreIP = ran_yaml["CORE"]
+CORE_ID = ran_yaml["CORE_ID"]
+coreIP = sp.getoutput('kubectl get pod -l app=amf -o jsonpath="{.items[0].status.podIP}" -n'+CORE_ID)
+print("CORE ID:"+CORE_ID)
+print(coreIP)
+
 FLEXRAN_enable = ran_yaml["FLEXRAN"]["FLEXRAN_enable"]
-FLEXRAN_IP = ran_yaml["FLEXRAN"]["FLEXRAN_IP"]
+FLEXRAN_ID=ran_yaml["FLEXRAN"]["FLEXRAN_ID"]
+FLEXRAN_IP = sp.getoutput('kubectl get pod -l app=flexran-controller -o jsonpath="{.items[0].status.podIP}" -n'+FLEXRAN_ID)
+print("FLEXRAN IP:"+FLEXRAN_ID)
+print(FLEXRAN_IP)
+
 band = ran_yaml["other-params"]["band"]
 downlink = ran_yaml["other-params"]["downlink"]
 uplink = ran_yaml["other-params"]["uplink"]
