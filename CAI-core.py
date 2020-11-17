@@ -10,7 +10,7 @@ except ImportError:
     DEVNULL = open(os.devnull, 'wb')
 
 
-with open("configuration.yaml", "r") as ymlfile:
+with open("core.yaml", "r") as ymlfile:
     core_yaml = yaml.safe_load(ymlfile)
 
 # Declare variables to be passed into your helm-chart.
@@ -80,7 +80,4 @@ sp.call(["kubectl","-n",namespace,"exec",SMF_POD,"--","./setup-lasse.sh", MONGO_
 time.sleep(5)
 sp.call(["kubectl","-n",namespace,"exec",PCRF_POD,"--","./setup-lasse.sh", MONGO_IP, HSS_IP, AMF_IP, UPF_IP, SMF_IP, PCRF_IP], stdin=PIPE, stdout=DEVNULL, stderr=STDOUT)
 time.sleep(5)
-
-
-
 
