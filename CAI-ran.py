@@ -119,15 +119,15 @@ if option == "vnf-pnf":
         sp.call(["kubectl","-n",namespace,"exec",VNF_POD,"--", "sed", "-i","s|FLEXRAN_IPV4_ADDRESS.*;|FLEXRAN_IPV4_ADDRESS   = \""+FLEXRAN_IP+"\";|g" , "./ci-scripts/conf_files/rcc.band7.tm1.nfapi.conf"], stdin=PIPE, stdout=DEVNULL, stderr=STDOUT)
 
     sp.call(["kubectl","-n",namespace,"exec",PNF_POD,"--", "apt-get","install","-y","iputils-ping","net-tools"], stdin=PIPE, stdout=DEVNULL, stderr=STDOUT)
-    sp.call(["kubectl","-n",namespace,"exec",VNF_POD,"--","sudo","-E","./targets/bin/lte-softmodem.Rel15","-O","./ci-scripts/conf_files/rcc.band7.tm1.nfapi.conf"], stdin=PIPE, stdout=DEVNULL, stderr=STDOUT)
-    sp.call(["kubectl","-n",namespace,"exec",PNF_POD,"--","sudo","-E","./targets/bin/lte-softmodem.Rel15","-O","./ci-scripts/conf_files/ue.nfapi.conf","--L2-emul","3","--num-ues","6","--nokrnmod","1"], stdin=PIPE, stdout=DEVNULL, stderr=STDOUT)
+    sp.call(["kubectl","-n",namespace,"exec",VNF_POD,"--","sudo","-E","./targets/bin/lte-softmodem.Rel15","-O","./ci-scripts/conf_files/rcc.band7.tm1.nfapi.conf",">","/dev/null","2>&1","&"], stdin=PIPE, stdout=DEVNULL, stderr=STDOUT)
+    sp.call(["kubectl","-n",namespace,"exec",PNF_POD,"--","sudo","-E","./targets/bin/lte-softmodem.Rel15","-O","./ci-scripts/conf_files/ue.nfapi.conf","--L2-emul","3","--num-ues","6","--nokrnmod","1", ">","/dev/null","2>&1","&"], stdin=PIPE, stdout=DEVNULL, stderr=STDOUT)
     time.sleep(5)
 
     sp.call(["kubectl","-n",namespace,"exec",VNF_POD,"--","killall","lte-uesoftmodem.Rel15"], stdin=PIPE, stdout=DEVNULL, stderr=STDOUT)
     sp.call(["kubectl","-n",namespace,"exec",PNF_POD,"--","killall","lte-uesoftmodem.Rel15"], stdin=PIPE, stdout=DEVNULL, stderr=STDOUT)
 
-    sp.call(["kubectl","-n",namespace,"exec",VNF_POD,"--","./ran.sh"], stdin=PIPE, stdout=DEVNULL, stderr=STDOUT)
-    sp.call(["kubectl","-n",namespace,"exec",PNF_POD,"--","./ran.sh"], stdin=PIPE, stdout=DEVNULL, stderr=STDOUT)
+    sp.call(["kubectl","-n",namespace,"exec",VNF_POD,"--","./ran.sh",">","/dev/null","2>&1","&"], stdin=PIPE, stdout=DEVNULL, stderr=STDOUT)
+    sp.call(["kubectl","-n",namespace,"exec",PNF_POD,"--","./ran.sh",">","/dev/null","2>&1","&"], stdin=PIPE, stdout=DEVNULL, stderr=STDOUT)
 
 if option == "enb":
     sp.call(["helm", "install", "./helm-charts/simplechart/", "--generate-name","--set","name=enb","--set","namespace="+namespace,"--set","mode="+mode,"--set", "node="+allocation_enb], stdin=PIPE, stdout=DEVNULL, stderr=STDOUT)
