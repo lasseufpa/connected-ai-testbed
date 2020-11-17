@@ -1,0 +1,27 @@
+# Default values for CONNECTED-AI-TESTBED.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your Core Network.
+
+type: RAN
+id: ran-00
+# Configuration ('rcc-rru','vnf-pnf', or 'enb')
+option: vnf-pnf
+# Choose whether you want to specify which node name which module should be allocated (node-name) 
+# or whether it should be allocated via node-label (local)
+mode: local
+# node-name options: your cluster node names
+# local options: edge, cloud and antenna
+allocation:
+    rcc: edge
+    rru: antenna
+    vnf: edge
+    pnf: antenna
+    enb: antenna
+CORE: 192.0.0.0 
+FLEXRAN:
+    FLEXRAN_enable: yes
+    FLEXRAN_IP: 192.0.0.0
+other-params: 
+    band: '7'
+    downlink: '2680000000L'
+    uplink: '-120000000'
