@@ -129,12 +129,11 @@ if option == "vnf-pnf":
     sp.Popen(["kubectl","-n",namespace,"exec",PNF_POD,"--","sudo","-E","./targets/bin/lte-uesoftmodem.Rel15","-O","./ci-scripts/conf_files/ue.nfapi.conf","--L2-emul","3","--num-ues","6","--nokrnmod","1"], stdout=sp.PIPE, stderr=sp.STDOUT)
     time.sleep(15)
     print("Checking...")
-
     
-    sp.Popen(["kubectl","-n",namespace,"exec",VNF_POD,"--","killall","lte-softmodem.Rel15"], stdout=sp.PIPE, stderr=sp.STDOUT)
-    sp.Popen(["kubectl","-n",namespace,"exec",PNF_POD,"--","killall","lte-uesoftmodem.Rel15"], stdout=sp.PIPE, stderr=sp.STDOUT)
-    time.sleep(10)
-    sp.Popen(["kubectl","-n",namespace,"exec",VNF_POD,"--","./ran.sh"], stdout=sp.PIPE, stderr=sp.STDOUT)
-    sp.Popen(["kubectl","-n",namespace,"exec",PNF_POD,"--","./ran.sh"], stdout=sp.PIPE, stderr=sp.STDOUT)
+    sp.Popen(["kubectl","-n",namespace,"exec",PNF_POD,"--","sudo","killall","lte-uesoftmodem.Rel15"], stdout=sp.PIPE, stderr=sp.STDOUT)
+    sp.Popen(["kubectl","-n",namespace,"exec",PNF_POD,"--","sudo","./ran.sh"], stdout=sp.PIPE, stderr=sp.STDOUT)
+    
+    sp.Popen(["kubectl","-n",namespace,"exec",VNF_POD,"--","sudo","killall","lte-softmodem.Rel15"], stdout=sp.PIPE, stderr=sp.STDOUT)
+    sp.Popen(["kubectl","-n",namespace,"exec",VNF_POD,"--","sudo","./ran.sh"], stdout=sp.PIPE, stderr=sp.STDOUT)
 
-    print("Done.")
+    print("Done")
