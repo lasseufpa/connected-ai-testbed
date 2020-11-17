@@ -4,8 +4,8 @@
 
 type: RAN
 id: enb-00
-# Configuration ('rcc-rru','vnf-pnf', or 'enb')
-option: vnf-pnf
+# Configuration ('rcc-rru' or 'vnf-pnf')
+option: rcc-rru
 # Choose whether you want to specify which node name which module should be allocated (node-name) 
 # or whether it should be allocated via node-label (local)
 mode: local
@@ -17,10 +17,10 @@ allocation:
     vnf: edge
     pnf: antenna
     enb: antenna
-CORE: 192.168.46.224 
+CORE: 192.168.46.237 
 FLEXRAN:
     FLEXRAN_enable: yes
-    FLEXRAN_IP: 192.168.46.191
+    FLEXRAN_IP: 192.168.46.158
 other-params: 
     band: '7'
     downlink: '2680000000L'
