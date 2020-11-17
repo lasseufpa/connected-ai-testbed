@@ -36,7 +36,6 @@ uplink = ran_yaml["other-params"]["uplink"]
 
 #Check if already exists
 CheckNamespace = sp.getoutput(["kubectl get ns |  grep -c "+namespace])
-print(CheckNamespace)
 
 if CheckNamespace != "0":
   print('ID scenario already exists! Please, change the ID and try again')
@@ -86,9 +85,12 @@ if option == "rcc-rru":
 
 if option == "vnf-pnf":
     sp.call(["helm", "install", "./helm-charts/simplechart/", "--generate-name","--set","name=vnf","--set","namespace="+namespace,"--set","mode="+mode,"--set", "node="+allocation_vnf], stdin=PIPE, stdout=DEVNULL, stderr=STDOUT)
+    print("VNF CREATED")
+    time.sleep(15)
     sp.call(["helm", "install", "./helm-charts/simplechart/", "--generate-name","--set","name=pnf","--set","namespace="+namespace,"--set","mode="+mode,"--set", "node="+allocation_pnf], stdin=PIPE, stdout=DEVNULL, stderr=STDOUT)
-    time.sleep(30)
-
+    print("PNF CREATED")
+    time.sleep(15)
+    print("Setting ...")
     VNF_POD = sp.getoutput('kubectl get pod -l app=vnf -o jsonpath="{.items[0].metadata.name}" -n'+namespace)
     PNF_POD = sp.getoutput('kubectl get pod -l app=pnf -o jsonpath="{.items[0].metadata.name}" -n'+namespace)
     VNF_IP = sp.getoutput('kubectl get pod -l app=vnf -o jsonpath="{.items[0].status.podIP}" -n'+namespace)
@@ -118,17 +120,21 @@ if option == "vnf-pnf":
         sp.call(["kubectl","-n",namespace,"exec",VNF_POD,"--", "sed", "-i","s|FLEXRAN_INTERFACE_NAME.*;|FLEXRAN_INTERFACE_NAME = \"eth0\";|g" , "./ci-scripts/conf_files/rcc.band7.tm1.nfapi.conf"], stdin=PIPE, stdout=DEVNULL, stderr=STDOUT)
         sp.call(["kubectl","-n",namespace,"exec",VNF_POD,"--", "sed", "-i","s|FLEXRAN_IPV4_ADDRESS.*;|FLEXRAN_IPV4_ADDRESS   = \""+FLEXRAN_IP+"\";|g" , "./ci-scripts/conf_files/rcc.band7.tm1.nfapi.conf"], stdin=PIPE, stdout=DEVNULL, stderr=STDOUT)
 
+    print("Setting finished.")
+    print("Installing required packages ...")
     sp.call(["kubectl","-n",namespace,"exec",PNF_POD,"--", "apt-get","install","-y","iputils-ping","net-tools"], stdin=PIPE, stdout=DEVNULL, stderr=STDOUT)
-    sp.call(["kubectl","-n",namespace,"exec",VNF_POD,"--","sudo","-E","./targets/bin/lte-softmodem.Rel15","-O","./ci-scripts/conf_files/rcc.band7.tm1.nfapi.conf",">","/dev/null","2>&1","&"], stdin=PIPE, stdout=DEVNULL, stderr=STDOUT)
-    sp.call(["kubectl","-n",namespace,"exec",PNF_POD,"--","sudo","-E","./targets/bin/lte-softmodem.Rel15","-O","./ci-scripts/conf_files/ue.nfapi.conf","--L2-emul","3","--num-ues","6","--nokrnmod","1", ">","/dev/null","2>&1","&"], stdin=PIPE, stdout=DEVNULL, stderr=STDOUT)
-    time.sleep(5)
+    print("Starting..VNF")
+    sp.Popen(["kubectl","-n",namespace,"exec",VNF_POD,"--","sudo","-E","./targets/bin/lte-softmodem.Rel15","-O","./ci-scripts/conf_files/rcc.band7.tm1.nfapi.conf"], stdout=sp.PIPE, stderr=sp.STDOUT)
+    print("Starting..PNF")
+    sp.Popen(["kubectl","-n",namespace,"exec",PNF_POD,"--","sudo","-E","./targets/bin/lte-uesoftmodem.Rel15","-O","./ci-scripts/conf_files/ue.nfapi.conf","--L2-emul","3","--num-ues","6","--nokrnmod","1"], stdout=sp.PIPE, stderr=sp.STDOUT)
+    time.sleep(15)
+    print("Checking...")
 
-    sp.call(["kubectl","-n",namespace,"exec",VNF_POD,"--","killall","lte-uesoftmodem.Rel15"], stdin=PIPE, stdout=DEVNULL, stderr=STDOUT)
-    sp.call(["kubectl","-n",namespace,"exec",PNF_POD,"--","killall","lte-uesoftmodem.Rel15"], stdin=PIPE, stdout=DEVNULL, stderr=STDOUT)
+    
+    sp.Popen(["kubectl","-n",namespace,"exec",VNF_POD,"--","killall","lte-softmodem.Rel15"], stdout=sp.PIPE, stderr=sp.STDOUT)
+    sp.Popen(["kubectl","-n",namespace,"exec",PNF_POD,"--","killall","lte-uesoftmodem.Rel15"], stdout=sp.PIPE, stderr=sp.STDOUT)
+    time.sleep(10)
+    sp.Popen(["kubectl","-n",namespace,"exec",VNF_POD,"--","./ran.sh"], stdout=sp.PIPE, stderr=sp.STDOUT)
+    sp.Popen(["kubectl","-n",namespace,"exec",PNF_POD,"--","./ran.sh"], stdout=sp.PIPE, stderr=sp.STDOUT)
 
-    sp.call(["kubectl","-n",namespace,"exec",VNF_POD,"--","./ran.sh",">","/dev/null","2>&1","&"], stdin=PIPE, stdout=DEVNULL, stderr=STDOUT)
-    sp.call(["kubectl","-n",namespace,"exec",PNF_POD,"--","./ran.sh",">","/dev/null","2>&1","&"], stdin=PIPE, stdout=DEVNULL, stderr=STDOUT)
-
-if option == "enb":
-    sp.call(["helm", "install", "./helm-charts/simplechart/", "--generate-name","--set","name=enb","--set","namespace="+namespace,"--set","mode="+mode,"--set", "node="+allocation_enb], stdin=PIPE, stdout=DEVNULL, stderr=STDOUT)
-
+    print("Done.")
