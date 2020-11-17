@@ -3,9 +3,9 @@
 # Declare variables to be passed into your Core Network.
 
 type: RAN
-id: enb-00
+id: enb-01
 # Configuration ('rcc-rru' or 'vnf-pnf')
-option: rcc-rru
+option: vnf-pnf
 # Choose whether you want to specify which node name which module should be allocated (node-name) 
 # or whether it should be allocated via node-label (local)
 mode: local
@@ -17,10 +17,10 @@ allocation:
     vnf: edge
     pnf: antenna
     enb: antenna
-CORE: 192.168.46.237 
+CORE_ID: core-00
 FLEXRAN:
     FLEXRAN_enable: yes
-    FLEXRAN_IP: 192.168.46.158
+    FLEXRAN_ID: flexran-00
 other-params: 
     band: '7'
     downlink: '2680000000L'
