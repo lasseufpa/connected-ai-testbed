@@ -3,7 +3,7 @@
 # Declare variables to be passed into your Core Network.
 
 type: Core
-id: scenario-00
+id: core-00
 # Choose whether you want to specify which node name which module should be allocated (node-name) 
 # or whether it should be allocated via node-label (local)
 mode: local

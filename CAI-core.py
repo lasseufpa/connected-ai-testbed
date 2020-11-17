@@ -26,7 +26,7 @@ allocation_webapp = core_yaml["allocation"]["webapp"]
 
 #Create NameSpace
 #Check if already exists
-CheckNamespace = sp.getoutput(["kubectl get ns |  grep -c"+namespace])
+CheckNamespace = sp.getoutput(["kubectl get ns |  grep -c "+namespace])
 if CheckNamespace != "0":
   print('ID scenario already exists! Please, change the ID and try again')
   quit()
@@ -67,12 +67,12 @@ SMF_IP = sp.getoutput('kubectl get pod -l app=smf -o jsonpath="{.items[0].status
 PCRF_IP = sp.getoutput('kubectl get pod -l app=pcrf -o jsonpath="{.items[0].status.podIP}" -n'+namespace)
 
 
-sp.call(["kubectl","-n",namespace,"exec",UPF_POD,"--", "/root/setup.sh"], stdin=PIPE, stdout=DEVNULL, stderr=STDOUT)
+sp.call(["kubectl","-n",namespace,"exec",UPF_POD,"--", "bash","/root/setup.sh"], stdin=PIPE, stdout=DEVNULL, stderr=STDOUT)
 print("UPF function configurated")
-sp.call(["kubectl","-n",namespace,"exec",MONGO_POD,"--", "/usr/src/data/setup-lasse.sh",MONGO_IP], stdin=PIPE, stdout=DEVNULL, stderr=STDOUT)
+sp.call(["kubectl","-n",namespace,"exec",MONGO_POD,"--","bash", "/usr/src/data/setup-lasse.sh",MONGO_IP], stdin=PIPE, stdout=DEVNULL, stderr=STDOUT)
 print("Default database created")
 time.sleep(15)
-sp.call(["kubectl","-n",namespace,"exec",WEBAPP_POD,"--","/root/setup.sh",MONGO_IP], stdin=PIPE, stdout=DEVNULL, stderr=STDOUT)
+sp.Popen(["kubectl","-n",namespace,"exec",WEBAPP_POD,"--","bash","/root/setup.sh",MONGO_IP], stdout=sp.PIPE, stderr=sp.STDOUT)
 print("Webapp configurated")
 
 sp.call(["kubectl","-n",namespace,"exec",HSS_POD,"--","./setup-lasse.sh",MONGO_IP, HSS_IP, AMF_IP, UPF_IP, SMF_IP, PCRF_IP], stdin=PIPE, stdout=DEVNULL, stderr=STDOUT)
