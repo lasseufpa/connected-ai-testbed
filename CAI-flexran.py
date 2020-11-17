@@ -34,4 +34,4 @@ time.sleep(10)
 #Starting
 FLEXRAN_POD = sp.getoutput('kubectl get pod -l app=flexran-controller -o jsonpath="{.items[0].metadata.name}" -n'+namespace)
 sp.Popen(["kubectl","-n",namespace,"exec",FLEXRAN_POD,"--","./run_flexran_rtc.sh"], stdout=sp.PIPE, stderr=sp.STDOUT)
-
+print("Flexran created")
