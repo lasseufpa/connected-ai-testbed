@@ -3,9 +3,9 @@
 # Declare variables to be passed into your Core Network.
 
 type: RAN
-id: enb-01
+id: enb-00
 # Configuration ('rcc-rru' or 'vnf-pnf')
-option: vnf-pnf
+option: rcc-rru
 # Choose whether you want to specify which node name which module should be allocated (node-name) 
 # or whether it should be allocated via node-label (local)
 mode: local
