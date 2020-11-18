@@ -12,14 +12,11 @@ mode: local
 # node-name options: your cluster node names
 # local options: edge, cloud and antenna
 allocation:
-    rcc: edge
-    rru: antenna
-    vnf: edge
-    pnf: antenna
-    enb: antenna
+    rcc: edge 
+    rru: antenna 
 CORE_ID: core-00
 FLEXRAN:
-    FLEXRAN_enable: yes
+    FLEXRAN_enable: False 
     FLEXRAN_ID: flexran-00
 other-params: 
     band: '7'
