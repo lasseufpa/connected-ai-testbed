@@ -1,0 +1,10 @@
+# Default values for CONNECTED-AI-TESTBED.
+# This is a YAML-formatted file.
+
+type: FLEXRAN
+id: flexran-00
+mode: local
+# node-name options: your cluster node names
+# local options: edge, cloud and antenna
+allocation:
+    flexran: edge
