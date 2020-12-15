@@ -10,10 +10,10 @@ mode: local
 # node-name options: your cluster node names
 # local options: edge, cloud and antenna
 allocation:
-    amf: cloud
+    amf: cloud 
     upf: cloud
     hss: cloud
-    smf: cloud
+    smf: cloud 
     pcrf: cloud
     database: cloud
     webapp: cloud
