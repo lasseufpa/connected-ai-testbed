@@ -80,8 +80,6 @@ docker-compose build
 
 The default configuration is the Core, Radio Cloud Center (RCC) and Remote Radio Unit (RRU) on individual nodes. To change, modify `core.yaml`, `ran.yaml` and/or `flexran.yaml`  according to the desired configuration.
 
-Multiple scenarios are created by associating IDs of CORE, RAN, and FLEXRAN types.
-
 ## Run
 
 ### `run.py`
@@ -96,7 +94,11 @@ Run `run.py ` to create CORE, RAN, and/or FLEXRAN.
 
 Usage example:
 
- `run.py -c core.yaml -r ran.yaml  -f flexran.yaml` 
+ `python3.6 run.py -c core.yaml -r ran.yaml  -f flexran.yaml` 
+
+## Multiple scenarios 
+
+Multiple scenarios are created by associating IDs of CORE, RAN, and FLEXRAN types.
 
 ## User management
 
