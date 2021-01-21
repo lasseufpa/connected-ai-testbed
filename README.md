@@ -21,7 +21,7 @@ Connected AI testbed allows building flexible and realistic scenarios where diff
 
 This document is a quickstart and a getting started guide in one, intended for your first run-through of Connected AI testbed.
 
-## Key Concepts
+## Open-source platforms used
 
 * [Free5GC](https://www.free5gc.org/): The free5GC is an open-source project for 5th generation (5G) mobile core networks. The source code of free5GC stage 1 can be downloaded from [here](https://bitbucket.org/nctu_5g/free5gc-stage-1/src/master/).
 
@@ -41,10 +41,19 @@ This document is a quickstart and a getting started guide in one, intended for y
 
 [OAI-RAN Kernel Requirements for RAN](https://gitlab.eurecom.fr/oai/openairinterface5g/-/wikis/OpenAirKernelMainSetup)
 
+Install [Docker](https://docs.docker.com/engine/install/), [Docker-Compose](https://docs.docker.com/compose/install/), and [Kubernetes](https://kubernetes.io/docs/setup/) in all computers of your cluster. 
 
-Our installation method requires that you first have installed [Docker](https://docs.docker.com/engine/install/), [Docker-Compose](https://docs.docker.com/compose/install/), and [Kubernetes](https://kubernetes.io/docs/setup/) in all computers of the cluster node. 
+## CAI hardware and operating-system
 
-Our recommended quickstart method to deploy Connected AI testbed is using three cluster nodes (Antenna, Cloud, and Edge). Another option is using only one node (Antenna).
+We use the specific hardware and operating-system constraints below for our real-time operation:
+
+  - Three computers with a Core i5-8400 CPU@2666~MHz processor with an operational system Ubuntu 16.04 LTS and a low latency kernel. 
+
+  - One USRP B210 http://www.ettus.com/product/details/UB210-KIT
+
+> In our setup,  we associate each
+> of the three machines with 
+> functions: cloud, edge and antenna
 
 ## Installation
 
@@ -67,7 +76,7 @@ kubectl label nodes <nodename> environment=<antenna, edge or cloud>
 Step 5: Clone this Git repository (and submodules):
 
 ```
-git clone --recurse-submodules https://gitlab.lasse.ufpa.br/2020-ai-testbed/ai-testbed/connected-ai-testbed
+git clone --recurse-submodules https://github.com/lasseufpa/connected-ai-testbed.git
 ```
 
 Step 6: Build the OAI-RAN and Free5GC Docker images in all kubernetes cluster nodes, for that, inside /oai-ran-docker and /free5gc-docker-kube/cluster paths run:
@@ -79,6 +88,13 @@ docker-compose build
 ## Configuration
 
 The default configuration is the Core, Radio Cloud Center (RCC) and Remote Radio Unit (RRU) on individual nodes. To change, modify `core.yaml`, `ran.yaml` and/or `flexran.yaml`  according to the desired configuration.
+
+![UFPA_Live_5G_Network__1_](https://www.lasse.ufpa.br/wp-content/uploads/2021/01/core.png)
+
+![UFPA_Live_5G_Network__2_](https://www.lasse.ufpa.br/wp-content/uploads/2021/01/flexran.png)
+
+![UFPA_Live_5G_Network__3_](https://www.lasse.ufpa.br/wp-content/uploads/2021/01/ran.png)
+
 
 ## Run
 
@@ -95,6 +111,8 @@ Run `run.py ` to create CORE, RAN, and/or FLEXRAN.
 Usage example:
 
  `python3.6 run.py -c core.yaml -r ran.yaml  -f flexran.yaml` 
+
+ `python3.6 run.py -r ran.yaml` 
 
 ## Multiple scenarios 
 
