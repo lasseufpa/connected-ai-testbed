@@ -79,11 +79,10 @@ Step 5: Clone this Git repository (and submodules):
 git clone --recurse-submodules https://github.com/lasseufpa/connected-ai-testbed.git
 ```
 
-Step 6: Build the OAI-RAN and Free5GC Docker images in all kubernetes cluster nodes, for that, inside /oai-ran-docker and /free5gc-docker-kube/cluster paths run:
+Step 6: Build the OAI-RAN and Free5GC Docker images in all kubernetes cluster nodes
 
-```
-docker-compose build
-```
+> In README of /oai-ran-docker and /free5gc-docker-kube repos 
+> you will find a detailed explanation of how to perform the builds
 
 ## Configuration
 
