@@ -95,7 +95,6 @@ The default configuration is the Core, Radio Cloud Center (RCC) and Remote Radio
 
 ![UFPA_Live_5G_Network__3_](https://www.lasse.ufpa.br/wp-content/uploads/2021/01/ran.png)
 
-
 ## Run
 
 ### `run.py`
@@ -116,10 +115,23 @@ Usage example:
 
 ## Multiple scenarios 
 
-Multiple scenarios are created by associating IDs of CORE, RAN, and FLEXRAN types.
+Multiple scenarios are created by associating IDs of modified CORE, RAN, and FLEXRAN yaml files.
+
+![UFPA_Live_5G_Network__4_](https://www.lasse.ufpa.br/wp-content/uploads/2021/01/exemplo_1.png)
+
+![UFPA_Live_5G_Network__5_](https://www.lasse.ufpa.br/wp-content/uploads/2021/01/exemplo_2.png)
+
+![UFPA_Live_5G_Network__6_](https://www.lasse.ufpa.br/wp-content/uploads/2021/01/exemplo_3.png)
 
 ## User management
 
 To acess the Core User management visit: 
 
 `http://<CORE NODE IP>: <WEBAPP service port>/`
+
+The default username and password are “admin” and “1423”.
+
+> For a user to enter the network
+> it is necessary that the IMSI, security context (K, OPc, AMF),
+> and APN of the user SIMCARD are
+> compatible with those inserted in the database
