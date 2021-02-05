@@ -140,7 +140,13 @@ def ran(f):
     band = ran_yaml["other-params"]["band"]
     downlink = ran_yaml["other-params"]["downlink"]
     uplink = ran_yaml["other-params"]["uplink"]
-
+    eNB_ID = ran_yaml["other-params"]["eNB_ID"]
+    MCC = ran_yaml["other-params"]["MCC"]
+    MNC = ran_yaml["other-params"]["MCC"]
+    N_RB_DL = ran_yaml["other-params"]["N_RB_DL"]
+    tx_gain = ran_yaml["other-params"]["tx_gain"]
+    rx_gain = ran_yaml["other-params"]["rx_gain"]
+    
     #Create NameSpace
 
     #Check if already exists
@@ -175,8 +181,13 @@ def ran(f):
         sp.call(["kubectl","-n",namespace,"exec",RRU_POD,"--", "sed", "-i", "s|local_address.*;|local_address=\""+RRU_IP+"\";|g", "./ci-scripts/conf_files/rru.fdd.band7.conf"], stdin=PIPE, stdout=DEVNULL, stderr=STDOUT)
         sp.call(["kubectl","-n",namespace,"exec",RRU_POD,"--", "sed", "-i", "s|bands.*;|bands                            = ["+band+"];|g", "./ci-scripts/conf_files/rru.fdd.band7.conf"], stdin=PIPE, stdout=DEVNULL, stderr=STDOUT)
 
-        sp.call(["kubectl","-n",namespace,"exec",RCC_POD,"--", "sed", "-i", "s|mcc = 208;|mcc = 208;|g", "./ci-scripts/conf_files/rcc.band7.tm1.if4p5.lo.25PRB.usrpb210.conf"], stdin=PIPE, stdout=DEVNULL, stderr=STDOUT)
-        sp.call(["kubectl","-n",namespace,"exec",RCC_POD,"--", "sed", "-i", "s|mnc = 92;|mnc = 93;|g", "./ci-scripts/conf_files/rcc.band7.tm1.if4p5.lo.25PRB.usrpb210.conf"], stdin=PIPE, stdout=DEVNULL, stderr=STDOUT)
+        sp.call(["kubectl","-n",namespace,"exec",RCC_POD,"--", "sed", "-i", "s|eNB_ID.*;|eNB_ID    =  "+eNB_ID+";|g", "./ci-scripts/conf_files/rcc.band7.tm1.if4p5.lo.25PRB.usrpb210.conf"], stdin=PIPE, stdout=DEVNULL, stderr=STDOUT)
+        sp.call(["kubectl","-n",namespace,"exec",RCC_POD,"--", "sed", "-i", "s|mcc = 208;|mcc = "+MCC+";|g", "./ci-scripts/conf_files/rcc.band7.tm1.if4p5.lo.25PRB.usrpb210.conf"], stdin=PIPE, stdout=DEVNULL, stderr=STDOUT)
+        sp.call(["kubectl","-n",namespace,"exec",RCC_POD,"--", "sed", "-i", "s|mnc = 92;|mnc = "+MNC+";|g", "./ci-scripts/conf_files/rcc.band7.tm1.if4p5.lo.25PRB.usrpb210.conf"], stdin=PIPE, stdout=DEVNULL, stderr=STDOUT)
+        sp.call(["kubectl","-n",namespace,"exec",RCC_POD,"--", "sed", "-i", "s|N_RB_DL.*;|N_RB_DL                 			      = "+N_RB_DL+";|g", "./ci-scripts/conf_files/rcc.band7.tm1.if4p5.lo.25PRB.usrpb210.conf"], stdin=PIPE, stdout=DEVNULL, stderr=STDOUT)
+        sp.call(["kubectl","-n",namespace,"exec",RCC_POD,"--", "sed", "-i", "s|tx_gain.*;|tx_gain                                            = "+tx_gain+";|g", "./ci-scripts/conf_files/rcc.band7.tm1.if4p5.lo.25PRB.usrpb210.conf"], stdin=PIPE, stdout=DEVNULL, stderr=STDOUT)
+        sp.call(["kubectl","-n",namespace,"exec",RCC_POD,"--", "sed", "-i", "s|rx_gain.*;|rx_gain                                            = "+rx_gain+";|g", "./ci-scripts/conf_files/rcc.band7.tm1.if4p5.lo.25PRB.usrpb210.conf"], stdin=PIPE, stdout=DEVNULL, stderr=STDOUT)
+
         sp.call(["kubectl","-n",namespace,"exec",RCC_POD,"--", "sed", "-i", "s|ipv4 .*;|ipv4       = \""+coreIP+"\";|g", "./ci-scripts/conf_files/rcc.band7.tm1.if4p5.lo.25PRB.usrpb210.conf"], stdin=PIPE, stdout=DEVNULL, stderr=STDOUT)
         sp.call(["kubectl","-n",namespace,"exec",RCC_POD,"--", "sed", "-i", "s|ENB_IPV4_ADDRESS_FOR_S1_MME.*;|ENB_IPV4_ADDRESS_FOR_S1_MME              =\""+RCC_IP+"\/24\";|g", "./ci-scripts/conf_files/rcc.band7.tm1.if4p5.lo.25PRB.usrpb210.conf"], stdin=PIPE, stdout=DEVNULL, stderr=STDOUT)
         sp.call(["kubectl","-n",namespace,"exec",RCC_POD,"--", "sed", "-i", "s|ENB_IPV4_ADDRESS_FOR_S1U.*;|ENB_IPV4_ADDRESS_FOR_S1U              = \""+RCC_IP+"\/24\";|g", "./ci-scripts/conf_files/rcc.band7.tm1.if4p5.lo.25PRB.usrpb210.conf"], stdin=PIPE, stdout=DEVNULL, stderr=STDOUT)
@@ -217,8 +228,13 @@ def ran(f):
         sp.call(["kubectl","-n",namespace,"exec",PNF_POD,"--", "sed", "-i", "s|local_n_address.*;|local_n_address=\""+PNF_IP+"\";|g", "./ci-scripts/conf_files/ue.nfapi.conf"], stdin=PIPE, stdout=DEVNULL, stderr=STDOUT)
         sp.call(["kubectl","-n",namespace,"exec",PNF_POD,"--", "sed", "-i", "s|bands.*;|bands                            = ["+band+"];|g", "./ci-scripts/conf_files/ue.nfapi.conf"], stdin=PIPE, stdout=DEVNULL, stderr=STDOUT)
 
-        sp.call(["kubectl","-n",namespace,"exec",VNF_POD,"--", "sed", "-i", "s|mcc = 208;|mcc = 208;|g", "./ci-scripts/conf_files/rcc.band7.tm1.nfapi.conf"], stdin=PIPE, stdout=DEVNULL, stderr=STDOUT)
-        sp.call(["kubectl","-n",namespace,"exec",VNF_POD,"--", "sed", "-i", "s|mnc = 92;|mnc = 93;|g", "./ci-scripts/conf_files/rcc.band7.tm1.nfapi.conf"], stdin=PIPE, stdout=DEVNULL, stderr=STDOUT)
+        sp.call(["kubectl","-n",namespace,"exec",VNF_POD,"--", "sed", "-i", "s|eNB_ID.*;|eNB_ID    =  "+eNB_ID+";|g", "./ci-scripts/conf_files/rcc.band7.tm1.nfapi.conf"], stdin=PIPE, stdout=DEVNULL, stderr=STDOUT)
+        sp.call(["kubectl","-n",namespace,"exec",VNF_POD,"--", "sed", "-i", "s|mcc = 208;|mcc = "+MCC+";|g", "./ci-scripts/conf_files/rcc.band7.tm1.nfapi.conf"], stdin=PIPE, stdout=DEVNULL, stderr=STDOUT)
+        sp.call(["kubectl","-n",namespace,"exec",VNF_POD,"--", "sed", "-i", "s|mnc = 92;|mnc = "+MNC+";|g", "./ci-scripts/conf_files/rcc.band7.tm1.nfapi.conf"], stdin=PIPE, stdout=DEVNULL, stderr=STDOUT)
+        sp.call(["kubectl","-n",namespace,"exec",VNF_POD,"--", "sed", "-i", "s|N_RB_DL.*;|N_RB_DL                 			      = "+N_RB_DL+";|g", "./ci-scripts/conf_files/rcc.band7.tm1.nfapi.conf"], stdin=PIPE, stdout=DEVNULL, stderr=STDOUT)
+        sp.call(["kubectl","-n",namespace,"exec",VNF_POD,"--", "sed", "-i", "s|tx_gain.*;|tx_gain                                            = "+tx_gain+";|g", "./ci-scripts/conf_files/rcc.band7.tm1.nfapi.conf"], stdin=PIPE, stdout=DEVNULL, stderr=STDOUT)
+        sp.call(["kubectl","-n",namespace,"exec",VNF_POD,"--", "sed", "-i", "s|rx_gain.*;|rx_gain                                            = "+rx_gain+";|g", "./ci-scripts/conf_files/rcc.band7.tm1.nfapi.conf"], stdin=PIPE, stdout=DEVNULL, stderr=STDOUT)
+        
         sp.call(["kubectl","-n",namespace,"exec",VNF_POD,"--", "sed", "-i", "s|ipv4 .*;|ipv4       = \""+coreIP+"\";|g", "./ci-scripts/conf_files/rcc.band7.tm1.nfapi.conf"], stdin=PIPE, stdout=DEVNULL, stderr=STDOUT)
         sp.call(["kubectl","-n",namespace,"exec",VNF_POD,"--", "sed", "-i", "s|ens3|eth0|g", "./ci-scripts/conf_files/rcc.band7.tm1.nfapi.conf"], stdin=PIPE, stdout=DEVNULL, stderr=STDOUT)
         sp.call(["kubectl","-n",namespace,"exec",VNF_POD,"--", "sed", "-i", "s|ENB_IPV4_ADDRESS_FOR_S1_MME.*;|ENB_IPV4_ADDRESS_FOR_S1_MME              =\""+VNF_IP+"\/24\";|g", "./ci-scripts/conf_files/rcc.band7.tm1.nfapi.conf"], stdin=PIPE, stdout=DEVNULL, stderr=STDOUT)
