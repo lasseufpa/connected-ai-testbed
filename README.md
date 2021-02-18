@@ -98,11 +98,8 @@ The default configuration is the Core, Radio Cloud Center (RCC) and Remote Radio
 
 ### Real RAN and Emulated RAN 
 
-Our testbed has two possibilities for the RAN: using real equipment and using an emulated version.
-
-> The version using equipment is "rcc-rru" mode
-> and the emulated version is "vnf-pnf" mode
-> the mode is defined in the RAN configuration file
+Our testbed has two possibilities for the RAN: using real equipment and using an emulated version. The version using equipment is "rcc-rru" and the emulated version is "vnf-pnf".
+> The option key is defined in the RAN configuration file
 
 ## Run
 
