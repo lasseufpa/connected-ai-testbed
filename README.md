@@ -33,7 +33,9 @@ This document is a quickstart and a getting started guide in one, intended for y
 
 * [FlexRAN](http://mosaic5g.io/flexran/): A Flexible and programmable platform for Software-Defined Radio Access Networks.
 
-## Prerequisites
+## Requirements
+
+Note: Please do not try if you don't have Free5GC and OAI-RAN Minimum Requirements as Free5GC and OAI needs lot of packages and its very sensitive to version numbers, linux kernel, etc. 
 
 [Free5GC Minimum Requirements](https://www.free5gc.org/installation)
 
@@ -93,6 +95,14 @@ The default configuration is the Core, Radio Cloud Center (RCC) and Remote Radio
 ![UFPA_Live_5G_Network__2_](https://www.lasse.ufpa.br/wp-content/uploads/2021/01/flexran.png)
 
 ![UFPA_Live_5G_Network__3_](https://www.lasse.ufpa.br/wp-content/uploads/2021/01/ran.png)
+
+### Real RAN and Emulated RAN 
+
+Our testbed has two possibilities for the RAN: using real equipment and using an emulated version.
+
+> The version using equipment is "rcc-rru" mode
+> and the emulated version is "vnf-pnf" mode
+> the mode is defined in the RAN configuration file
 
 ## Run
 
