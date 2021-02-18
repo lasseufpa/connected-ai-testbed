@@ -137,15 +137,35 @@ def ran(f):
         print("FLEXRAN IP:"+FLEXRAN_ID)
         print(FLEXRAN_IP)
 
-    band = ran_yaml["other-params"]["band"]
-    downlink = ran_yaml["other-params"]["downlink"]
-    uplink = ran_yaml["other-params"]["uplink"]
-    eNB_ID = ran_yaml["other-params"]["eNB_ID"]
-    MCC = ran_yaml["other-params"]["MCC"]
-    MNC = ran_yaml["other-params"]["MCC"]
-    N_RB_DL = ran_yaml["other-params"]["N_RB_DL"]
-    tx_gain = ran_yaml["other-params"]["tx_gain"]
-    rx_gain = ran_yaml["other-params"]["rx_gain"]
+#other-params default
+    band = "7"
+    downlink = "2680000000L"
+    uplink = "-120000000"
+    eNB_ID = "0xe00"
+    MCC = "208"
+    MNC = "93"
+    N_RB_DL = "25"
+    tx_gain = "90"
+    rx_gain = "125"
+    
+    if 'band' in ran_yaml["other-params"]:
+        band = ran_yaml["other-params"]["band"]
+    if 'dowlink' in ran_yaml["other-params"]:
+        downlink = ran_yaml["other-params"]["downlink"]
+    if 'uplink' in ran_yaml["other-params"]:
+        uplink = ran_yaml["other-params"]["uplink"]
+    if 'eNB_ID' in ran_yaml["other-params"]:
+        eNB_ID = ran_yaml["other-params"]["eNB_ID"]
+    if 'MCC' in ran_yaml["other-params"]:
+        MCC = ran_yaml["other-params"]["MCC"]
+    if 'MNC' in ran_yaml["other-params"]:
+        MNC = ran_yaml["other-params"]["MCC"]
+    if 'N_RB_DL' in ran_yaml["other-params"]:
+        N_RB_DL = ran_yaml["other-params"]["N_RB_DL"]
+    if 'tx_gain' in ran_yaml["other-params"]:
+        tx_gain = ran_yaml["other-params"]["tx_gain"]
+    if 'rx_gain' in ran_yaml["other-params"]:
+        rx_gain = ran_yaml["other-params"]["rx_gain"]
     
     #Create NameSpace
 
