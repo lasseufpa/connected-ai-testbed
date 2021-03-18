@@ -48,7 +48,9 @@ Connected AI testbed allows building flexible and realistic scenarios where diff
 
 * [Flexran](http://mosaic5g.io/flexran/): A Flexible and programmable platform for Software-Defined Radio Access Networks.
 
-## Prerequisites
+## Requirements
+
+Note: Please do not try if you don't have Free5GC and OAI-RAN Minimum Requirements as Free5GC and OAI needs lot of packages and its very sensitive to version numbers, linux kernel, etc. 
 
 [Free5GC Minimum Requirements](https://www.free5gc.org/installation)
 
