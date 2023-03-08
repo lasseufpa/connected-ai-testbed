@@ -1,9 +1,9 @@
 [submodule "free5gc-docker-kube"]
 	path = free5gc-docker-kube
 	url = https://github.com/lasseufpa/free5gc-docker-kube.git
-[submodule "oai-ran-docker"]
-	path = oai-ran-docker
-	url = https://github.com/lasseufpa/oai-ran-docker.git
 [submodule "helm-charts"]
 	path = helm-charts
 	url = https://github.com/lasseufpa/helm-charts.git
+[submodule "oai-ran-docker"]
+	path = oai-ran-docker
+	url = https://github.com/lasseufpa/oai-ran-docker
